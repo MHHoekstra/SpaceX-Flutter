@@ -27,8 +27,13 @@ class LaunchHttpRepository implements LaunchRepository {
         }
       };
       final uri = Uri.https("api.spacexdata.com", "/v5/launches/query");
+      final headers = {"Content-Type": "application/json"};
 
-      final response = await _client.post(uri, body: body);
+      final response = await _client.post(
+        uri,
+        body: jsonEncode(body),
+        headers: headers,
+      );
       final statusCode = response.statusCode;
 
       return await _handleLaunchResponse(statusCode, response);
@@ -53,8 +58,13 @@ class LaunchHttpRepository implements LaunchRepository {
         }
       };
       final uri = Uri.https("api.spacexdata.com", "/v5/launches/query");
+      final headers = {"Content-Type": "application/json"};
 
-      final response = await _client.post(uri, body: body);
+      final response = await _client.post(
+        uri,
+        body: jsonEncode(body),
+        headers: headers,
+      );
       final statusCode = response.statusCode;
 
       return await _handlePaginatedLaunchResponse(statusCode, response);
@@ -79,8 +89,13 @@ class LaunchHttpRepository implements LaunchRepository {
         }
       };
       final uri = Uri.https("api.spacexdata.com", "/v5/launches/query");
+      final headers = {"Content-Type": "application/json"};
 
-      final response = await _client.post(uri, body: body);
+      final response = await _client.post(
+        uri,
+        body: jsonEncode(body),
+        headers: headers,
+      );
       final statusCode = response.statusCode;
 
       return await _handlePaginatedLaunchResponse(statusCode, response);
@@ -95,6 +110,7 @@ class LaunchHttpRepository implements LaunchRepository {
   ) async {
     if (statusCode >= 200 && statusCode < 400) {
       final json = await compute(jsonDecode, response.body);
+      print(json);
       final paginated = Paginated.fromJson(
           json, (json) => Launch.fromJson(json as Map<String, dynamic>));
 

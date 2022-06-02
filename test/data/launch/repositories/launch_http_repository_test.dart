@@ -20,6 +20,7 @@ void main() {
 
   final uri = Uri.https('api.spacexdata.com', '/v5/launches/query');
   final wrongSideOfFold = Exception('Should be the other side of the Either');
+  final headers = {"Content-Type": "application/json"};
 
   setUpAll(() {
     client = HttpClientMock();
@@ -28,41 +29,38 @@ void main() {
 
   group('LaunchHttpRepository', () {
     group('getLatestLaunch', () {
-      late final Map<String, dynamic> body;
+      late final String body;
       late final String encodedJson;
       late final Launch launch;
       setUpAll(() async {
-        body = {
+        body = jsonEncode({
           "query": {"upcoming": false},
           "options": {
             "limit": 1,
             "sort": {"flight_number": "desc"},
             "populate": ["payloads", "capsules", "crew", "launchpad"]
           }
-        };
+        });
         encodedJson = await fixture("get_latest_launch_fixture.json");
-        launch = Paginated
-            .fromJson(jsonDecode(encodedJson),
-                (json) => Launch.fromJson(json as Map<String, dynamic>))
-            .docs
-            .first;
+        launch = Paginated.fromJson(jsonDecode(encodedJson),
+            (json) => Launch.fromJson(json as Map<String, dynamic>)).docs.first;
       });
 
       test('should call the post method with the correct endpoint', () async {
         //Arrange
 
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 200));
 
         //Act
         await repository.getLatestLaunch();
 
         //Assert
-        verify(() => client.post(uri, body: body)).called(1);
+        verify(() => client.post(uri, body: body, headers: headers)).called(1);
       });
       test('should return a Right<Launch> on a success', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 200));
         final expected = launch;
 
@@ -73,21 +71,21 @@ void main() {
         result.fold((l) => throw wrongSideOfFold, (r) => expect(r, expected));
       });
       test('should return a Left<NetworkFailure> on a SocketException',
-              () async {
-            //Arrange
-            when(() => client.post(uri, body: body))
-                .thenThrow(const SocketException(''));
+          () async {
+        //Arrange
+        when(() => client.post(uri, body: body, headers: headers))
+            .thenThrow(const SocketException(''));
 
-            //Act
-            final result = await repository.getLatestLaunch();
+        //Act
+        final result = await repository.getLatestLaunch();
 
-            //Assert
-            result.fold((l) => expect(l, const Failure.networkFailure()),
-                    (r) => throw wrongSideOfFold);
-          });
+        //Assert
+        result.fold((l) => expect(l, const Failure.networkFailure()),
+            (r) => throw wrongSideOfFold);
+      });
       test('should return a Left<ServerSideFailure> on a status 500', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 500));
 
         //Act
@@ -95,11 +93,11 @@ void main() {
 
         //Assert
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
-                (r) => throw wrongSideOfFold);
+            (r) => throw wrongSideOfFold);
       });
       test('should return a Left<ServerSideFailure> on a status 400', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 400));
 
         //Act
@@ -107,15 +105,15 @@ void main() {
 
         //Assert
         result.fold((l) => expect(l, const Failure.clientSideFailure()),
-                (r) => throw wrongSideOfFold);
+            (r) => throw wrongSideOfFold);
       });
     });
     group('getPastLaunches', () {
-      late final Map<String, dynamic> body;
+      late final String body;
       late final String encodedJson;
       late final Paginated<Launch> paginated;
       setUpAll(() async {
-        body = {
+        body = jsonEncode({
           "query": {"upcoming": false},
           "options": {
             "limit": 20,
@@ -123,27 +121,27 @@ void main() {
             "sort": {"flight_number": "desc"},
             "populate": ["payloads", "capsules", "crew", "launchpad"]
           }
-        };
+        });
         encodedJson = await fixture("get_past_20_launches_fixture.json");
         paginated = Paginated.fromJson(jsonDecode(encodedJson),
-                (json) => Launch.fromJson(json as Map<String, dynamic>));
+            (json) => Launch.fromJson(json as Map<String, dynamic>));
       });
 
       test('should call the post method with the correct endpoint', () async {
         //Arrange
 
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 200));
 
         //Act
         await repository.getPastLaunches(20, 1);
 
         //Assert
-        verify(() => client.post(uri, body: body)).called(1);
+        verify(() => client.post(uri, body: body, headers: headers)).called(1);
       });
       test('should return a Right<Paginated<Launch>> on a success', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 200));
         final expected = paginated;
 
@@ -154,21 +152,21 @@ void main() {
         result.fold((l) => throw wrongSideOfFold, (r) => expect(r, expected));
       });
       test('should return a Left<NetworkFailure> on a SocketException',
-              () async {
-            //Arrange
-            when(() => client.post(uri, body: body))
-                .thenThrow(const SocketException(''));
+          () async {
+        //Arrange
+        when(() => client.post(uri, body: body, headers: headers))
+            .thenThrow(const SocketException(''));
 
-            //Act
-            final result = await repository.getPastLaunches(20, 1);
+        //Act
+        final result = await repository.getPastLaunches(20, 1);
 
-            //Assert
-            result.fold((l) => expect(l, const Failure.networkFailure()),
-                    (r) => throw wrongSideOfFold);
-          });
+        //Assert
+        result.fold((l) => expect(l, const Failure.networkFailure()),
+            (r) => throw wrongSideOfFold);
+      });
       test('should return a Left<ServerSideFailure> on a status 500', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 500));
 
         //Act
@@ -176,11 +174,11 @@ void main() {
 
         //Assert
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
-                (r) => throw wrongSideOfFold);
+            (r) => throw wrongSideOfFold);
       });
       test('should return a Left<ServerSideFailure> on a status 400', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 400));
 
         //Act
@@ -188,16 +186,16 @@ void main() {
 
         //Assert
         result.fold((l) => expect(l, const Failure.clientSideFailure()),
-                (r) => throw wrongSideOfFold);
+            (r) => throw wrongSideOfFold);
       });
     });
     group('getUpcomingLaunches', () {
-      late final Map<String, dynamic> body;
+      late final String body;
       late final String encodedJson;
       late final Paginated<Launch> paginated;
 
       setUpAll(() async {
-        body = {
+        body = jsonEncode({
           "query": {"upcoming": true},
           "options": {
             "limit": 20,
@@ -205,27 +203,27 @@ void main() {
             "sort": {"flight_number": "asc"},
             "populate": ["payloads", "capsules", "crew", "launchpad"]
           }
-        };
+        });
         encodedJson = await fixture("get_next_20_launches_fixture.json");
         paginated = Paginated.fromJson(jsonDecode(encodedJson),
-                (json) => Launch.fromJson(json as Map<String, dynamic>));
+            (json) => Launch.fromJson(json as Map<String, dynamic>));
       });
 
       test('should call the post method with the correct endpoint', () async {
         //Arrange
 
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 200));
 
         //Act
         await repository.getUpcomingLaunches(20, 1);
 
         //Assert
-        verify(() => client.post(uri, body: body)).called(1);
+        verify(() => client.post(uri, body: body, headers: headers)).called(1);
       });
       test('should return a Right<Paginated<Launch>> on a success', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 200));
         final expected = paginated;
 
@@ -236,21 +234,21 @@ void main() {
         result.fold((l) => throw wrongSideOfFold, (r) => expect(r, expected));
       });
       test('should return a Left<NetworkFailure> on a SocketException',
-              () async {
-            //Arrange
-            when(() => client.post(uri, body: body))
-                .thenThrow(const SocketException(''));
+          () async {
+        //Arrange
+        when(() => client.post(uri, body: body, headers: headers))
+            .thenThrow(const SocketException(''));
 
-            //Act
-            final result = await repository.getUpcomingLaunches(20, 1);
+        //Act
+        final result = await repository.getUpcomingLaunches(20, 1);
 
-            //Assert
-            result.fold((l) => expect(l, const Failure.networkFailure()),
-                    (r) => throw wrongSideOfFold);
-          });
+        //Assert
+        result.fold((l) => expect(l, const Failure.networkFailure()),
+            (r) => throw wrongSideOfFold);
+      });
       test('should return a Left<ServerSideFailure> on a status 500', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 500));
 
         //Act
@@ -258,11 +256,11 @@ void main() {
 
         //Assert
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
-                (r) => throw wrongSideOfFold);
+            (r) => throw wrongSideOfFold);
       });
       test('should return a Left<ServerSideFailure> on a status 400', () async {
         //Arrange
-        when(() => client.post(uri, body: body))
+        when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 400));
 
         //Act
@@ -270,7 +268,7 @@ void main() {
 
         //Assert
         result.fold((l) => expect(l, const Failure.clientSideFailure()),
-                (r) => throw wrongSideOfFold);
+            (r) => throw wrongSideOfFold);
       });
     });
   });
