@@ -19,32 +19,38 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() networkFailure,
+    required TResult Function() serverSideFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? networkFailure,
+    TResult Function()? serverSideFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? networkFailure,
+    TResult Function()? serverSideFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(ServerSideFailure value) serverSideFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(ServerSideFailure value)? serverSideFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(ServerSideFailure value)? serverSideFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$NetworkFailure implements NetworkFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() networkFailure,
+    required TResult Function() serverSideFailure,
   }) {
     return networkFailure();
   }
@@ -114,6 +121,7 @@ class _$NetworkFailure implements NetworkFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? networkFailure,
+    TResult Function()? serverSideFailure,
   }) {
     return networkFailure?.call();
   }
@@ -122,6 +130,7 @@ class _$NetworkFailure implements NetworkFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? networkFailure,
+    TResult Function()? serverSideFailure,
     required TResult orElse(),
   }) {
     if (networkFailure != null) {
@@ -134,6 +143,7 @@ class _$NetworkFailure implements NetworkFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(ServerSideFailure value) serverSideFailure,
   }) {
     return networkFailure(this);
   }
@@ -142,6 +152,7 @@ class _$NetworkFailure implements NetworkFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(ServerSideFailure value)? serverSideFailure,
   }) {
     return networkFailure?.call(this);
   }
@@ -150,6 +161,7 @@ class _$NetworkFailure implements NetworkFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(ServerSideFailure value)? serverSideFailure,
     required TResult orElse(),
   }) {
     if (networkFailure != null) {
@@ -161,4 +173,109 @@ class _$NetworkFailure implements NetworkFailure {
 
 abstract class NetworkFailure implements Failure {
   const factory NetworkFailure() = _$NetworkFailure;
+}
+
+/// @nodoc
+abstract class _$$ServerSideFailureCopyWith<$Res> {
+  factory _$$ServerSideFailureCopyWith(
+          _$ServerSideFailure value, $Res Function(_$ServerSideFailure) then) =
+      __$$ServerSideFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ServerSideFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements _$$ServerSideFailureCopyWith<$Res> {
+  __$$ServerSideFailureCopyWithImpl(
+      _$ServerSideFailure _value, $Res Function(_$ServerSideFailure) _then)
+      : super(_value, (v) => _then(v as _$ServerSideFailure));
+
+  @override
+  _$ServerSideFailure get _value => super._value as _$ServerSideFailure;
+}
+
+/// @nodoc
+
+class _$ServerSideFailure implements ServerSideFailure {
+  const _$ServerSideFailure();
+
+  @override
+  String toString() {
+    return 'Failure.serverSideFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ServerSideFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() networkFailure,
+    required TResult Function() serverSideFailure,
+  }) {
+    return serverSideFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? networkFailure,
+    TResult Function()? serverSideFailure,
+  }) {
+    return serverSideFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? networkFailure,
+    TResult Function()? serverSideFailure,
+    required TResult orElse(),
+  }) {
+    if (serverSideFailure != null) {
+      return serverSideFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(ServerSideFailure value) serverSideFailure,
+  }) {
+    return serverSideFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(ServerSideFailure value)? serverSideFailure,
+  }) {
+    return serverSideFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(ServerSideFailure value)? serverSideFailure,
+    required TResult orElse(),
+  }) {
+    if (serverSideFailure != null) {
+      return serverSideFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ServerSideFailure implements Failure {
+  const factory ServerSideFailure() = _$ServerSideFailure;
 }
