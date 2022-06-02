@@ -9,7 +9,7 @@ part of 'capsule.dart';
 _$_Capsule _$$_CapsuleFromJson(Map<String, dynamic> json) => _$_Capsule(
       status: json['status'] as String,
       type: json['type'] as String,
-      lastUpdate: json['last_update'] as String,
+      lastUpdate: json['last_update'] as String?,
       serial: json['serial'] as String,
     );
 

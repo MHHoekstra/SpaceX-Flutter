@@ -25,7 +25,7 @@ mixin _$Launch {
   List<Payload> get payloads => throw _privateConstructorUsedError;
   List<Capsule> get capsules => throw _privateConstructorUsedError;
   Launchpad get launchpad => throw _privateConstructorUsedError;
-  bool get success => throw _privateConstructorUsedError;
+  bool? get success => throw _privateConstructorUsedError;
   @JsonKey(name: 'flight_number')
   int get flightNumber => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $LaunchCopyWith<$Res> {
       List<Payload> payloads,
       List<Capsule> capsules,
       Launchpad launchpad,
-      bool success,
+      bool? success,
       @JsonKey(name: 'flight_number') int flightNumber,
       String name,
       @JsonKey(name: 'date_utc') DateTime date});
@@ -99,7 +99,7 @@ class _$LaunchCopyWithImpl<$Res> implements $LaunchCopyWith<$Res> {
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       flightNumber: flightNumber == freezed
           ? _value.flightNumber
           : flightNumber // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$$_LaunchCopyWith<$Res> implements $LaunchCopyWith<$Res> {
       List<Payload> payloads,
       List<Capsule> capsules,
       Launchpad launchpad,
-      bool success,
+      bool? success,
       @JsonKey(name: 'flight_number') int flightNumber,
       String name,
       @JsonKey(name: 'date_utc') DateTime date});
@@ -188,7 +188,7 @@ class __$$_LaunchCopyWithImpl<$Res> extends _$LaunchCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       flightNumber: flightNumber == freezed
           ? _value.flightNumber
           : flightNumber // ignore: cast_nullable_to_non_nullable
@@ -257,7 +257,7 @@ class _$_Launch implements _Launch {
   @override
   final Launchpad launchpad;
   @override
-  final bool success;
+  final bool? success;
   @override
   @JsonKey(name: 'flight_number')
   final int flightNumber;
@@ -321,7 +321,7 @@ abstract class _Launch implements Launch {
       required final List<Payload> payloads,
       required final List<Capsule> capsules,
       required final Launchpad launchpad,
-      required final bool success,
+      required final bool? success,
       @JsonKey(name: 'flight_number') required final int flightNumber,
       required final String name,
       @JsonKey(name: 'date_utc') required final DateTime date}) = _$_Launch;
@@ -339,7 +339,7 @@ abstract class _Launch implements Launch {
   @override
   Launchpad get launchpad => throw _privateConstructorUsedError;
   @override
-  bool get success => throw _privateConstructorUsedError;
+  bool? get success => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'flight_number')
   int get flightNumber => throw _privateConstructorUsedError;

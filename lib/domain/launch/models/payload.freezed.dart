@@ -20,10 +20,10 @@ Payload _$PayloadFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Payload {
-  String get name => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'mass_kg')
-  double get massKg => throw _privateConstructorUsedError;
+  double? get massKg => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $PayloadCopyWith<$Res> {
   factory $PayloadCopyWith(Payload value, $Res Function(Payload) then) =
       _$PayloadCopyWithImpl<$Res>;
   $Res call(
-      {String name, String type, @JsonKey(name: 'mass_kg') double massKg});
+      {String? name, String? type, @JsonKey(name: 'mass_kg') double? massKg});
 }
 
 /// @nodoc
@@ -56,15 +56,15 @@ class _$PayloadCopyWithImpl<$Res> implements $PayloadCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       massKg: massKg == freezed
           ? _value.massKg
           : massKg // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ));
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$_PayloadCopyWith<$Res> implements $PayloadCopyWith<$Res> {
       __$$_PayloadCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name, String type, @JsonKey(name: 'mass_kg') double massKg});
+      {String? name, String? type, @JsonKey(name: 'mass_kg') double? massKg});
 }
 
 /// @nodoc
@@ -98,15 +98,15 @@ class __$$_PayloadCopyWithImpl<$Res> extends _$PayloadCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       massKg: massKg == freezed
           ? _value.massKg
           : massKg // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ));
   }
 }
@@ -123,12 +123,12 @@ class _$_Payload implements _Payload {
       _$$_PayloadFromJson(json);
 
   @override
-  final String name;
+  final String? name;
   @override
-  final String type;
+  final String? type;
   @override
   @JsonKey(name: 'mass_kg')
-  final double massKg;
+  final double? massKg;
 
   @override
   String toString() {
@@ -166,19 +166,19 @@ class _$_Payload implements _Payload {
 
 abstract class _Payload implements Payload {
   const factory _Payload(
-      {required final String name,
-      required final String type,
-      @JsonKey(name: 'mass_kg') required final double massKg}) = _$_Payload;
+      {required final String? name,
+      required final String? type,
+      @JsonKey(name: 'mass_kg') required final double? massKg}) = _$_Payload;
 
   factory _Payload.fromJson(Map<String, dynamic> json) = _$_Payload.fromJson;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'mass_kg')
-  double get massKg => throw _privateConstructorUsedError;
+  double? get massKg => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PayloadCopyWith<_$_Payload> get copyWith =>

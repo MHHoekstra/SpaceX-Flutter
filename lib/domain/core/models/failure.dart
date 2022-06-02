@@ -7,4 +7,6 @@ class Failure with _$Failure {
   const factory Failure.networkFailure() = NetworkFailure;
 
   const factory Failure.serverSideFailure() = ServerSideFailure;
+
+  const factory Failure.clientSideFailure() = ClientSideFailure;
 }

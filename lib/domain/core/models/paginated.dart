@@ -15,8 +15,8 @@ class Paginated<T extends Object?> with _$Paginated<T> {
     required int pagingCounter,
     required bool hasPrevPage,
     required bool hasNextPage,
-    required int prevPage,
-    required int nextPage,
+    required int? prevPage,
+    required int? nextPage,
   }) = _Paginated;
 
   factory Paginated.fromJson(

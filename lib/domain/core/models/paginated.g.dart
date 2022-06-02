@@ -19,8 +19,8 @@ Paginated<T> _$PaginatedFromJson<T extends Object?>(
       pagingCounter: json['pagingCounter'] as int,
       hasPrevPage: json['hasPrevPage'] as bool,
       hasNextPage: json['hasNextPage'] as bool,
-      prevPage: json['prevPage'] as int,
-      nextPage: json['nextPage'] as int,
+      prevPage: json['prevPage'] as int?,
+      nextPage: json['nextPage'] as int?,
     );
 
 Map<String, dynamic> _$PaginatedToJson<T extends Object?>(

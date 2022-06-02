@@ -16,7 +16,7 @@ class Launch with _$Launch {
     required List<Payload> payloads,
     required List<Capsule> capsules,
     required Launchpad launchpad,
-    required bool success,
+    required bool? success,
     @JsonKey(name: 'flight_number') required int flightNumber,
     required String name,
     @JsonKey(name: 'date_utc') required DateTime date,

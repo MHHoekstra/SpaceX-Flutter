@@ -7,10 +7,10 @@ part of 'launchpad.dart';
 // **************************************************************************
 
 _$_Launchpad _$$_LaunchpadFromJson(Map<String, dynamic> json) => _$_Launchpad(
-      name: json['name'] as String,
-      fullName: json['full_name'] as String,
-      locality: json['locality'] as String,
-      region: json['region'] as String,
+      name: json['name'] as String?,
+      fullName: json['full_name'] as String?,
+      locality: json['locality'] as String?,
+      region: json['region'] as String?,
       status: json['status'] as String,
     );
 

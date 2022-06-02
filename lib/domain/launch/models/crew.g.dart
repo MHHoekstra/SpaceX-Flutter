@@ -7,11 +7,10 @@ part of 'crew.dart';
 // **************************************************************************
 
 _$_Crew _$$_CrewFromJson(Map<String, dynamic> json) => _$_Crew(
-      name: json['name'] as String,
-      agency: json['agency'] as String,
-      image: json['image'] as String,
+      name: json['name'] as String?,
+      agency: json['agency'] as String?,
+      image: json['image'] as String?,
       status: json['status'] as String,
-      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$$_CrewToJson(_$_Crew instance) => <String, dynamic>{
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$_CrewToJson(_$_Crew instance) => <String, dynamic>{
       'agency': instance.agency,
       'image': instance.image,
       'status': instance.status,
-      'id': instance.id,
     };

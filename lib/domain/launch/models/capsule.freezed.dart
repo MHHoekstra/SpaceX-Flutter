@@ -23,7 +23,7 @@ mixin _$Capsule {
   String get status => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   @JsonKey(name: "last_update")
-  String get lastUpdate => throw _privateConstructorUsedError;
+  String? get lastUpdate => throw _privateConstructorUsedError;
   String get serial => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $CapsuleCopyWith<$Res> {
   $Res call(
       {String status,
       String type,
-      @JsonKey(name: "last_update") String lastUpdate,
+      @JsonKey(name: "last_update") String? lastUpdate,
       String serial});
 }
 
@@ -69,7 +69,7 @@ class _$CapsuleCopyWithImpl<$Res> implements $CapsuleCopyWith<$Res> {
       lastUpdate: lastUpdate == freezed
           ? _value.lastUpdate
           : lastUpdate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       serial: serial == freezed
           ? _value.serial
           : serial // ignore: cast_nullable_to_non_nullable
@@ -87,7 +87,7 @@ abstract class _$$_CapsuleCopyWith<$Res> implements $CapsuleCopyWith<$Res> {
   $Res call(
       {String status,
       String type,
-      @JsonKey(name: "last_update") String lastUpdate,
+      @JsonKey(name: "last_update") String? lastUpdate,
       String serial});
 }
 
@@ -119,7 +119,7 @@ class __$$_CapsuleCopyWithImpl<$Res> extends _$CapsuleCopyWithImpl<$Res>
       lastUpdate: lastUpdate == freezed
           ? _value.lastUpdate
           : lastUpdate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       serial: serial == freezed
           ? _value.serial
           : serial // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ class _$_Capsule implements _Capsule {
   final String type;
   @override
   @JsonKey(name: "last_update")
-  final String lastUpdate;
+  final String? lastUpdate;
   @override
   final String serial;
 
@@ -191,7 +191,7 @@ abstract class _Capsule implements Capsule {
   const factory _Capsule(
       {required final String status,
       required final String type,
-      @JsonKey(name: "last_update") required final String lastUpdate,
+      @JsonKey(name: "last_update") required final String? lastUpdate,
       required final String serial}) = _$_Capsule;
 
   factory _Capsule.fromJson(Map<String, dynamic> json) = _$_Capsule.fromJson;
@@ -202,7 +202,7 @@ abstract class _Capsule implements Capsule {
   String get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "last_update")
-  String get lastUpdate => throw _privateConstructorUsedError;
+  String? get lastUpdate => throw _privateConstructorUsedError;
   @override
   String get serial => throw _privateConstructorUsedError;
   @override

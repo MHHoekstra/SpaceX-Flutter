@@ -20,11 +20,11 @@ Launchpad _$LaunchpadFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Launchpad {
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: "full_name")
-  String get fullName => throw _privateConstructorUsedError;
-  String get locality => throw _privateConstructorUsedError;
-  String get region => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
+  String? get locality => throw _privateConstructorUsedError;
+  String? get region => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +38,10 @@ abstract class $LaunchpadCopyWith<$Res> {
   factory $LaunchpadCopyWith(Launchpad value, $Res Function(Launchpad) then) =
       _$LaunchpadCopyWithImpl<$Res>;
   $Res call(
-      {String name,
-      @JsonKey(name: "full_name") String fullName,
-      String locality,
-      String region,
+      {String? name,
+      @JsonKey(name: "full_name") String? fullName,
+      String? locality,
+      String? region,
       String status});
 }
 
@@ -65,19 +65,19 @@ class _$LaunchpadCopyWithImpl<$Res> implements $LaunchpadCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       locality: locality == freezed
           ? _value.locality
           : locality // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       region: region == freezed
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -93,10 +93,10 @@ abstract class _$$_LaunchpadCopyWith<$Res> implements $LaunchpadCopyWith<$Res> {
       __$$_LaunchpadCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
-      @JsonKey(name: "full_name") String fullName,
-      String locality,
-      String region,
+      {String? name,
+      @JsonKey(name: "full_name") String? fullName,
+      String? locality,
+      String? region,
       String status});
 }
 
@@ -122,19 +122,19 @@ class __$$_LaunchpadCopyWithImpl<$Res> extends _$LaunchpadCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       locality: locality == freezed
           ? _value.locality
           : locality // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       region: region == freezed
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -157,14 +157,14 @@ class _$_Launchpad implements _Launchpad {
       _$$_LaunchpadFromJson(json);
 
   @override
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: "full_name")
-  final String fullName;
+  final String? fullName;
   @override
-  final String locality;
+  final String? locality;
   @override
-  final String region;
+  final String? region;
   @override
   final String status;
 
@@ -208,24 +208,24 @@ class _$_Launchpad implements _Launchpad {
 
 abstract class _Launchpad implements Launchpad {
   const factory _Launchpad(
-      {required final String name,
-      @JsonKey(name: "full_name") required final String fullName,
-      required final String locality,
-      required final String region,
+      {required final String? name,
+      @JsonKey(name: "full_name") required final String? fullName,
+      required final String? locality,
+      required final String? region,
       required final String status}) = _$_Launchpad;
 
   factory _Launchpad.fromJson(Map<String, dynamic> json) =
       _$_Launchpad.fromJson;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "full_name")
-  String get fullName => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
   @override
-  String get locality => throw _privateConstructorUsedError;
+  String? get locality => throw _privateConstructorUsedError;
   @override
-  String get region => throw _privateConstructorUsedError;
+  String? get region => throw _privateConstructorUsedError;
   @override
   String get status => throw _privateConstructorUsedError;
   @override

@@ -18,7 +18,7 @@ _$_Launch _$$_LaunchFromJson(Map<String, dynamic> json) => _$_Launch(
           .map((e) => Capsule.fromJson(e as Map<String, dynamic>))
           .toList(),
       launchpad: Launchpad.fromJson(json['launchpad'] as Map<String, dynamic>),
-      success: json['success'] as bool,
+      success: json['success'] as bool?,
       flightNumber: json['flight_number'] as int,
       name: json['name'] as String,
       date: DateTime.parse(json['date_utc'] as String),

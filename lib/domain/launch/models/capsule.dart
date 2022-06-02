@@ -8,7 +8,7 @@ class Capsule with _$Capsule {
   const factory Capsule({
     required String status,
     required String type,
-    @JsonKey(name: "last_update") required String lastUpdate,
+    @JsonKey(name: "last_update") required String? lastUpdate,
     required String serial,
   }) = _Capsule;
 

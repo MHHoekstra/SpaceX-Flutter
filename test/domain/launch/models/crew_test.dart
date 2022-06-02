@@ -14,7 +14,6 @@ void main() {
           agency: "NASA",
           image: "https://i.imgur.com/ooaayWf.png",
           status: "active",
-          id: "5ebf1b7323a9a60006e03a7b",
         );
 
         //Act
