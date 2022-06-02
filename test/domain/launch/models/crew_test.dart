@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:space_x_flutter/domain/launch/models/crew.dart';
 
-import 'crew_fixtures.dart';
+import '../../../fixtures/crew_fixtures.dart';
 
 void main() {
   group('Crew', () {

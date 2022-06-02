@@ -22,6 +22,9 @@ Launch _$LaunchFromJson(Map<String, dynamic> json) {
 mixin _$Launch {
   Map<String, dynamic> get links => throw _privateConstructorUsedError;
   List<Crew> get crew => throw _privateConstructorUsedError;
+  List<Payload> get payloads => throw _privateConstructorUsedError;
+  List<Capsule> get capsules => throw _privateConstructorUsedError;
+  Launchpad get launchpad => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   @JsonKey(name: 'flight_number')
   int get flightNumber => throw _privateConstructorUsedError;
@@ -41,10 +44,15 @@ abstract class $LaunchCopyWith<$Res> {
   $Res call(
       {Map<String, dynamic> links,
       List<Crew> crew,
+      List<Payload> payloads,
+      List<Capsule> capsules,
+      Launchpad launchpad,
       bool success,
       @JsonKey(name: 'flight_number') int flightNumber,
       String name,
       @JsonKey(name: 'date_utc') DateTime date});
+
+  $LaunchpadCopyWith<$Res> get launchpad;
 }
 
 /// @nodoc
@@ -59,6 +67,9 @@ class _$LaunchCopyWithImpl<$Res> implements $LaunchCopyWith<$Res> {
   $Res call({
     Object? links = freezed,
     Object? crew = freezed,
+    Object? payloads = freezed,
+    Object? capsules = freezed,
+    Object? launchpad = freezed,
     Object? success = freezed,
     Object? flightNumber = freezed,
     Object? name = freezed,
@@ -73,6 +84,18 @@ class _$LaunchCopyWithImpl<$Res> implements $LaunchCopyWith<$Res> {
           ? _value.crew
           : crew // ignore: cast_nullable_to_non_nullable
               as List<Crew>,
+      payloads: payloads == freezed
+          ? _value.payloads
+          : payloads // ignore: cast_nullable_to_non_nullable
+              as List<Payload>,
+      capsules: capsules == freezed
+          ? _value.capsules
+          : capsules // ignore: cast_nullable_to_non_nullable
+              as List<Capsule>,
+      launchpad: launchpad == freezed
+          ? _value.launchpad
+          : launchpad // ignore: cast_nullable_to_non_nullable
+              as Launchpad,
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -91,6 +114,13 @@ class _$LaunchCopyWithImpl<$Res> implements $LaunchCopyWith<$Res> {
               as DateTime,
     ));
   }
+
+  @override
+  $LaunchpadCopyWith<$Res> get launchpad {
+    return $LaunchpadCopyWith<$Res>(_value.launchpad, (value) {
+      return _then(_value.copyWith(launchpad: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -101,10 +131,16 @@ abstract class _$$_LaunchCopyWith<$Res> implements $LaunchCopyWith<$Res> {
   $Res call(
       {Map<String, dynamic> links,
       List<Crew> crew,
+      List<Payload> payloads,
+      List<Capsule> capsules,
+      Launchpad launchpad,
       bool success,
       @JsonKey(name: 'flight_number') int flightNumber,
       String name,
       @JsonKey(name: 'date_utc') DateTime date});
+
+  @override
+  $LaunchpadCopyWith<$Res> get launchpad;
 }
 
 /// @nodoc
@@ -120,6 +156,9 @@ class __$$_LaunchCopyWithImpl<$Res> extends _$LaunchCopyWithImpl<$Res>
   $Res call({
     Object? links = freezed,
     Object? crew = freezed,
+    Object? payloads = freezed,
+    Object? capsules = freezed,
+    Object? launchpad = freezed,
     Object? success = freezed,
     Object? flightNumber = freezed,
     Object? name = freezed,
@@ -134,6 +173,18 @@ class __$$_LaunchCopyWithImpl<$Res> extends _$LaunchCopyWithImpl<$Res>
           ? _value._crew
           : crew // ignore: cast_nullable_to_non_nullable
               as List<Crew>,
+      payloads: payloads == freezed
+          ? _value._payloads
+          : payloads // ignore: cast_nullable_to_non_nullable
+              as List<Payload>,
+      capsules: capsules == freezed
+          ? _value._capsules
+          : capsules // ignore: cast_nullable_to_non_nullable
+              as List<Capsule>,
+      launchpad: launchpad == freezed
+          ? _value.launchpad
+          : launchpad // ignore: cast_nullable_to_non_nullable
+              as Launchpad,
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -157,15 +208,20 @@ class __$$_LaunchCopyWithImpl<$Res> extends _$LaunchCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Launch implements _Launch {
-  _$_Launch(
+  const _$_Launch(
       {required final Map<String, dynamic> links,
       required final List<Crew> crew,
+      required final List<Payload> payloads,
+      required final List<Capsule> capsules,
+      required this.launchpad,
       required this.success,
       @JsonKey(name: 'flight_number') required this.flightNumber,
       required this.name,
       @JsonKey(name: 'date_utc') required this.date})
       : _links = links,
-        _crew = crew;
+        _crew = crew,
+        _payloads = payloads,
+        _capsules = capsules;
 
   factory _$_Launch.fromJson(Map<String, dynamic> json) =>
       _$$_LaunchFromJson(json);
@@ -184,6 +240,22 @@ class _$_Launch implements _Launch {
     return EqualUnmodifiableListView(_crew);
   }
 
+  final List<Payload> _payloads;
+  @override
+  List<Payload> get payloads {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_payloads);
+  }
+
+  final List<Capsule> _capsules;
+  @override
+  List<Capsule> get capsules {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_capsules);
+  }
+
+  @override
+  final Launchpad launchpad;
   @override
   final bool success;
   @override
@@ -197,7 +269,7 @@ class _$_Launch implements _Launch {
 
   @override
   String toString() {
-    return 'Launch(links: $links, crew: $crew, success: $success, flightNumber: $flightNumber, name: $name, date: $date)';
+    return 'Launch(links: $links, crew: $crew, payloads: $payloads, capsules: $capsules, launchpad: $launchpad, success: $success, flightNumber: $flightNumber, name: $name, date: $date)';
   }
 
   @override
@@ -207,6 +279,9 @@ class _$_Launch implements _Launch {
             other is _$_Launch &&
             const DeepCollectionEquality().equals(other._links, _links) &&
             const DeepCollectionEquality().equals(other._crew, _crew) &&
+            const DeepCollectionEquality().equals(other._payloads, _payloads) &&
+            const DeepCollectionEquality().equals(other._capsules, _capsules) &&
+            const DeepCollectionEquality().equals(other.launchpad, launchpad) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
                 .equals(other.flightNumber, flightNumber) &&
@@ -220,6 +295,9 @@ class _$_Launch implements _Launch {
       runtimeType,
       const DeepCollectionEquality().hash(_links),
       const DeepCollectionEquality().hash(_crew),
+      const DeepCollectionEquality().hash(_payloads),
+      const DeepCollectionEquality().hash(_capsules),
+      const DeepCollectionEquality().hash(launchpad),
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(flightNumber),
       const DeepCollectionEquality().hash(name),
@@ -237,9 +315,12 @@ class _$_Launch implements _Launch {
 }
 
 abstract class _Launch implements Launch {
-  factory _Launch(
+  const factory _Launch(
       {required final Map<String, dynamic> links,
       required final List<Crew> crew,
+      required final List<Payload> payloads,
+      required final List<Capsule> capsules,
+      required final Launchpad launchpad,
       required final bool success,
       @JsonKey(name: 'flight_number') required final int flightNumber,
       required final String name,
@@ -251,6 +332,12 @@ abstract class _Launch implements Launch {
   Map<String, dynamic> get links => throw _privateConstructorUsedError;
   @override
   List<Crew> get crew => throw _privateConstructorUsedError;
+  @override
+  List<Payload> get payloads => throw _privateConstructorUsedError;
+  @override
+  List<Capsule> get capsules => throw _privateConstructorUsedError;
+  @override
+  Launchpad get launchpad => throw _privateConstructorUsedError;
   @override
   bool get success => throw _privateConstructorUsedError;
   @override
