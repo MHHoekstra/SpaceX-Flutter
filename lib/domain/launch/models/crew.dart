@@ -9,7 +9,7 @@ class Crew with _$Crew {
     required String? name,
     required String? agency,
     required String? image,
-    required String status,
+    required String? status,
   }) = _Crew;
 
   factory Crew.fromJson(Map<String, Object?> json) => _$CrewFromJson(json);

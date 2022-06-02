@@ -23,7 +23,7 @@ mixin _$Crew {
   String? get name => throw _privateConstructorUsedError;
   String? get agency => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ mixin _$Crew {
 abstract class $CrewCopyWith<$Res> {
   factory $CrewCopyWith(Crew value, $Res Function(Crew) then) =
       _$CrewCopyWithImpl<$Res>;
-  $Res call({String? name, String? agency, String? image, String status});
+  $Res call({String? name, String? agency, String? image, String? status});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$CrewCopyWithImpl<$Res> implements $CrewCopyWith<$Res> {
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$_CrewCopyWith<$Res> implements $CrewCopyWith<$Res> {
   factory _$$_CrewCopyWith(_$_Crew value, $Res Function(_$_Crew) then) =
       __$$_CrewCopyWithImpl<$Res>;
   @override
-  $Res call({String? name, String? agency, String? image, String status});
+  $Res call({String? name, String? agency, String? image, String? status});
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$$_CrewCopyWithImpl<$Res> extends _$CrewCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -136,7 +136,7 @@ class _$_Crew implements _Crew {
   @override
   final String? image;
   @override
-  final String status;
+  final String? status;
 
   @override
   String toString() {
@@ -179,7 +179,7 @@ abstract class _Crew implements Crew {
       {required final String? name,
       required final String? agency,
       required final String? image,
-      required final String status}) = _$_Crew;
+      required final String? status}) = _$_Crew;
 
   factory _Crew.fromJson(Map<String, dynamic> json) = _$_Crew.fromJson;
 
@@ -190,7 +190,7 @@ abstract class _Crew implements Crew {
   @override
   String? get image => throw _privateConstructorUsedError;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_CrewCopyWith<_$_Crew> get copyWith => throw _privateConstructorUsedError;
