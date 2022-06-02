@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:space_x_flutter/dependency_injection.dart';
 
 void main() {
+  dependencyInjectionInit();
   runApp(const MyApp());
 }
 
@@ -50,7 +52,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
