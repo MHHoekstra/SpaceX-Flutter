@@ -24,8 +24,8 @@ mixin _$Paginated<T extends Object?> {
   int get pagingCounter => throw _privateConstructorUsedError;
   bool get hasPrevPage => throw _privateConstructorUsedError;
   bool get hasNextPage => throw _privateConstructorUsedError;
-  int get prevPage => throw _privateConstructorUsedError;
-  int get nextPage => throw _privateConstructorUsedError;
+  int? get prevPage => throw _privateConstructorUsedError;
+  int? get nextPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PaginatedCopyWith<T, Paginated<T>> get copyWith =>
@@ -46,8 +46,8 @@ abstract class $PaginatedCopyWith<T extends Object?, $Res> {
       int pagingCounter,
       bool hasPrevPage,
       bool hasNextPage,
-      int prevPage,
-      int nextPage});
+      int? prevPage,
+      int? nextPage});
 }
 
 /// @nodoc
@@ -108,11 +108,11 @@ class _$PaginatedCopyWithImpl<T extends Object?, $Res>
       prevPage: prevPage == freezed
           ? _value.prevPage
           : prevPage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       nextPage: nextPage == freezed
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -133,8 +133,8 @@ abstract class _$$_PaginatedCopyWith<T extends Object?, $Res>
       int pagingCounter,
       bool hasPrevPage,
       bool hasNextPage,
-      int prevPage,
-      int nextPage});
+      int? prevPage,
+      int? nextPage});
 }
 
 /// @nodoc
@@ -197,11 +197,11 @@ class __$$_PaginatedCopyWithImpl<T extends Object?, $Res>
       prevPage: prevPage == freezed
           ? _value.prevPage
           : prevPage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       nextPage: nextPage == freezed
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -244,9 +244,9 @@ class _$_Paginated<T extends Object?> implements _Paginated<T> {
   @override
   final bool hasNextPage;
   @override
-  final int prevPage;
+  final int? prevPage;
   @override
-  final int nextPage;
+  final int? nextPage;
 
   @override
   String toString() {
@@ -304,8 +304,8 @@ abstract class _Paginated<T extends Object?> implements Paginated<T> {
       required final int pagingCounter,
       required final bool hasPrevPage,
       required final bool hasNextPage,
-      required final int prevPage,
-      required final int nextPage}) = _$_Paginated<T>;
+      required final int? prevPage,
+      required final int? nextPage}) = _$_Paginated<T>;
 
   @override
   List<T> get docs => throw _privateConstructorUsedError;
@@ -324,9 +324,9 @@ abstract class _Paginated<T extends Object?> implements Paginated<T> {
   @override
   bool get hasNextPage => throw _privateConstructorUsedError;
   @override
-  int get prevPage => throw _privateConstructorUsedError;
+  int? get prevPage => throw _privateConstructorUsedError;
   @override
-  int get nextPage => throw _privateConstructorUsedError;
+  int? get nextPage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PaginatedCopyWith<T, _$_Paginated<T>> get copyWith =>
