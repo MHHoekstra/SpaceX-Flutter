@@ -23,6 +23,7 @@ Paginated<T> _$PaginatedFromJson<T extends Object?>(
       nextPage: json['nextPage'] as int,
     );
 
+// ignore: unused_element
 Map<String, dynamic> _$PaginatedToJson<T extends Object?>(
   Paginated<T> instance,
   Object? Function(T value) toJsonT,
