@@ -19,6 +19,7 @@ dependencies:
   dartz: ^0.10.1
   http: ^0.13.4
   get_it: ^7.2.0
+  flutter_bloc: ^8.0.1
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +29,7 @@ dev_dependencies:
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
   mocktail: ^0.3.0
+  bloc_test: ^9.0.3
 
 flutter:
   uses-material-design: true
