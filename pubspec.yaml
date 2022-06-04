@@ -21,6 +21,9 @@ dependencies:
   get_it: ^7.2.0
   flutter_bloc: ^8.0.1
   carousel_slider: ^4.1.1
+  hydrated_bloc: ^8.1.0
+  path_provider: ^2.0.10
+  path: ^1.8.1
 
 dev_dependencies:
   flutter_test:

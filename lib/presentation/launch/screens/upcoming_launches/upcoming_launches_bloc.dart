@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../../domain/core/models/failure.dart';
 import '../../../../domain/core/models/paginated.dart';
@@ -8,18 +9,11 @@ import '../../../../domain/launch/models/launch_filter.dart';
 import '../../../../domain/launch/usecases/get_upcoming_launches.dart';
 
 part 'upcoming_launches_bloc.freezed.dart';
+part 'upcoming_launches_bloc.g.dart';
 
 class UpcomingLaunchesBloc
-    extends Bloc<UpcomingLaunchesEvent, UpcomingLaunchesState> {
-  UpcomingLaunchesBloc(this._usecase)
-      : super(
-          UpcomingLaunchesState.initial(
-            filter: LaunchFilter(
-              contains: '',
-              orderBy: LaunchFilterOrderBy.flightNumberAsc,
-            ),
-          ),
-        ) {
+    extends HydratedBloc<UpcomingLaunchesEvent, UpcomingLaunchesState> {
+  UpcomingLaunchesBloc(this._usecase) : super(UpcomingLaunchesState.initial()) {
     on<UpcomingLaunchesEvent>(
       (event, emit) => event.when(
         getMoreLaunches: () => _handleMoreLaunches(emit),
@@ -51,23 +45,27 @@ class UpcomingLaunchesBloc
     );
 
     result.fold(
-      (l) => emit(
-        UpcomingLaunchesState.failure(
-          failure: l,
-          filteredLaunches: state.filteredLaunches,
-          launchesData: state.launchesData,
-          filter: state.filter,
-        ),
-      ),
-      (r) => emit(
+        (l) => emit(
+              UpcomingLaunchesState.failure(
+                failure: l,
+                filteredLaunches: state.filteredLaunches,
+                launchesData: state.launchesData,
+                filter: state.filter,
+              ),
+            ), (r) {
+      final filteredLaunches = _applyFilter(r.docs, state.filter);
+      emit(
         UpcomingLaunchesState.success(
           failure: null,
           launchesData: r,
-          filteredLaunches: _applyFilter(r.docs, state.filter),
+          filteredLaunches: filteredLaunches,
           filter: state.filter,
         ),
-      ),
-    );
+      );
+      if (filteredLaunches.length < 20) {
+        add(UpcomingLaunchesEvent.getMoreLaunches());
+      }
+    });
   }
 
   void _handleMoreLaunches(Emitter emit) async {
@@ -201,46 +199,62 @@ class UpcomingLaunchesBloc
       return aux;
     }
   }
+
+  @override
+  UpcomingLaunchesState? fromJson(Map<String, dynamic> json) =>
+      UpcomingLaunchesState.fromJson(json['state']);
+
+  @override
+  Map<String, dynamic>? toJson(UpcomingLaunchesState state) =>
+      {'state': state.toJson()};
 }
 
 @freezed
 class UpcomingLaunchesState with _$UpcomingLaunchesState {
-  const UpcomingLaunchesState._();
+  UpcomingLaunchesState._();
 
   factory UpcomingLaunchesState.initial({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = UpcomingLaunchesInitial;
 
   factory UpcomingLaunchesState.loading({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = UpcomingLaunchesLoading;
 
   factory UpcomingLaunchesState.success({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = UpcomingLaunchesSuccess;
 
   factory UpcomingLaunchesState.failure({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = UpcomingLaunchesFailure;
 
   factory UpcomingLaunchesState.refreshing({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = UpcomingLaunchesRefreshing;
+
+  factory UpcomingLaunchesState.fromJson(Map<String, dynamic> json) =>
+      _$UpcomingLaunchesStateFromJson(json);
 }
 
 @freezed

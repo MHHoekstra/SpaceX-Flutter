@@ -38,29 +38,36 @@ class _LaunchesListViewState extends State<LaunchesListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      controller: _controller,
-      itemCount: widget.launches.length,
-      itemBuilder: (context, index) {
-        final launch = widget.launches[index];
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          child: LaunchCard(
-            patch: launch.links['patch']['small'] ?? '',
-            name: launch.name.toString(),
-            date: launch.date.toString(),
-            flightNumber: launch.flightNumber.toString(),
-            location: launch.launchpad.locality ?? "Unknown",
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => LaunchDetailsScreen(launch: launch),
+    return widget.launches.length > 0
+        ? ListView.builder(
+            controller: _controller,
+            itemCount: widget.launches.length,
+            itemBuilder: (context, index) {
+              final launch = widget.launches[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                child: LaunchCard(
+                  patch: launch.links['patch']['small'] ?? '',
+                  name: launch.name.toString(),
+                  date: launch.date.toString(),
+                  flightNumber: launch.flightNumber.toString(),
+                  location: launch.launchpad.locality ?? "Unknown",
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            LaunchDetailsScreen(launch: launch),
+                      ),
+                    );
+                  },
                 ),
               );
             },
-          ),
-        );
-      },
-    );
+          )
+        : const Center(
+            child: Text(
+              'This list is empty, Try changing the filter.',
+            ),
+          );
   }
 }

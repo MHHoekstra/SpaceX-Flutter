@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../../domain/core/models/failure.dart';
 import '../../../../domain/core/models/paginated.dart';
@@ -10,7 +11,8 @@ import '../../../../domain/launch/usecases/get_past_launches.dart';
 part 'past_launches_bloc.freezed.dart';
 part 'past_launches_bloc.g.dart';
 
-class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
+class PastLaunchesBloc
+    extends HydratedBloc<PastLaunchesEvent, PastLaunchesState> {
   PastLaunchesBloc(this._usecase) : super(PastLaunchesState.initial()) {
     on<PastLaunchesEvent>(
       (event, emit) => event.when(
@@ -42,23 +44,27 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
     );
 
     result.fold(
-      (l) => emit(
-        PastLaunchesState.failure(
-          failure: l,
-          filteredLaunches: state.filteredLaunches,
-          launchesData: state.launchesData,
-          filter: state.filter,
-        ),
-      ),
-      (r) => emit(
+        (l) => emit(
+              PastLaunchesState.failure(
+                failure: l,
+                filteredLaunches: state.filteredLaunches,
+                launchesData: state.launchesData,
+                filter: state.filter,
+              ),
+            ), (r) {
+      final filteredLaunches = _applyFilter(r.docs, state.filter);
+      emit(
         PastLaunchesState.success(
           failure: null,
           launchesData: r,
-          filteredLaunches: _applyFilter(r.docs, state.filter),
+          filteredLaunches: filteredLaunches,
           filter: state.filter,
         ),
-      ),
-    );
+      );
+      if (filteredLaunches.length < 20) {
+        add(PastLaunchesEvent.getMoreLaunches());
+      }
+    });
   }
 
   void _handleMoreLaunches(Emitter emit) async {
@@ -191,42 +197,55 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
       return aux;
     }
   }
+
+  @override
+  PastLaunchesState? fromJson(Map<String, dynamic> json) =>
+      PastLaunchesState.fromJson(json['state']);
+
+  @override
+  Map<String, dynamic>? toJson(PastLaunchesState state) =>
+      {'state': state.toJson()};
 }
 
 @freezed
 class PastLaunchesState with _$PastLaunchesState {
-  const PastLaunchesState._();
+  PastLaunchesState._();
 
   factory PastLaunchesState.initial({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = PastLaunchesInitial;
 
   factory PastLaunchesState.loading({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = PastLaunchesLoading;
 
   factory PastLaunchesState.success({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = PastLaunchesSuccess;
 
   factory PastLaunchesState.failure({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
   }) = PastLaunchesFailure;
 
   factory PastLaunchesState.refreshing({
-    Paginated<Launch>? launchesData,
+    @JsonKey(fromJson: Launch.paginatedFromJson)
+        Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,

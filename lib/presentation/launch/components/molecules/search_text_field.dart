@@ -20,7 +20,8 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextField(
+      child: TextFormField(
+        initialValue: filter?.contains,
         onChanged: onChanged,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),

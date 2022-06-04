@@ -14,8 +14,32 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+UpcomingLaunchesState _$UpcomingLaunchesStateFromJson(
+    Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'initial':
+      return UpcomingLaunchesInitial.fromJson(json);
+    case 'loading':
+      return UpcomingLaunchesLoading.fromJson(json);
+    case 'success':
+      return UpcomingLaunchesSuccess.fromJson(json);
+    case 'failure':
+      return UpcomingLaunchesFailure.fromJson(json);
+    case 'refreshing':
+      return UpcomingLaunchesRefreshing.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'UpcomingLaunchesState',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$UpcomingLaunchesState {
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
   List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
@@ -23,31 +47,36 @@ mixin _$UpcomingLaunchesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         initial,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         loading,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         success,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         failure,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
@@ -57,31 +86,36 @@ mixin _$UpcomingLaunchesState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -91,31 +125,36 @@ mixin _$UpcomingLaunchesState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -151,7 +190,7 @@ mixin _$UpcomingLaunchesState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UpcomingLaunchesStateCopyWith<UpcomingLaunchesState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -163,7 +202,8 @@ abstract class $UpcomingLaunchesStateCopyWith<$Res> {
           $Res Function(UpcomingLaunchesState) then) =
       _$UpcomingLaunchesStateCopyWithImpl<$Res>;
   $Res call(
-      {Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          Paginated<Launch>? launchesData,
       List<Launch>? filteredLaunches,
       Failure? failure,
       LaunchFilter? filter});
@@ -251,7 +291,8 @@ abstract class _$$UpcomingLaunchesInitialCopyWith<$Res>
       __$$UpcomingLaunchesInitialCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          Paginated<Launch>? launchesData,
       List<Launch>? filteredLaunches,
       Failure? failure,
       LaunchFilter? filter});
@@ -305,17 +346,23 @@ class __$$UpcomingLaunchesInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
   _$UpcomingLaunchesInitial(
-      {this.launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson) this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'initial',
         super._();
 
+  factory _$UpcomingLaunchesInitial.fromJson(Map<String, dynamic> json) =>
+      _$$UpcomingLaunchesInitialFromJson(json);
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   final Paginated<Launch>? launchesData;
   final List<Launch>? _filteredLaunches;
   @override
@@ -330,6 +377,9 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -349,6 +399,7 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -367,31 +418,36 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         initial,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         loading,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         success,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         failure,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
@@ -404,31 +460,36 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -441,31 +502,36 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -517,17 +583,27 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UpcomingLaunchesInitialToJson(this);
+  }
 }
 
 abstract class UpcomingLaunchesInitial extends UpcomingLaunchesState {
   factory UpcomingLaunchesInitial(
-      {final Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          final Paginated<Launch>? launchesData,
       final List<Launch>? filteredLaunches,
       final Failure? failure,
       final LaunchFilter? filter}) = _$UpcomingLaunchesInitial;
   UpcomingLaunchesInitial._() : super._();
 
+  factory UpcomingLaunchesInitial.fromJson(Map<String, dynamic> json) =
+      _$UpcomingLaunchesInitial.fromJson;
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
   @override
   List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
@@ -549,7 +625,8 @@ abstract class _$$UpcomingLaunchesLoadingCopyWith<$Res>
       __$$UpcomingLaunchesLoadingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          Paginated<Launch>? launchesData,
       List<Launch>? filteredLaunches,
       Failure? failure,
       LaunchFilter? filter});
@@ -603,17 +680,23 @@ class __$$UpcomingLaunchesLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
   _$UpcomingLaunchesLoading(
-      {this.launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson) this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'loading',
         super._();
 
+  factory _$UpcomingLaunchesLoading.fromJson(Map<String, dynamic> json) =>
+      _$$UpcomingLaunchesLoadingFromJson(json);
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   final Paginated<Launch>? launchesData;
   final List<Launch>? _filteredLaunches;
   @override
@@ -628,6 +711,9 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -647,6 +733,7 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -665,31 +752,36 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         initial,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         loading,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         success,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         failure,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
@@ -702,31 +794,36 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -739,31 +836,36 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -815,17 +917,27 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UpcomingLaunchesLoadingToJson(this);
+  }
 }
 
 abstract class UpcomingLaunchesLoading extends UpcomingLaunchesState {
   factory UpcomingLaunchesLoading(
-      {final Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          final Paginated<Launch>? launchesData,
       final List<Launch>? filteredLaunches,
       final Failure? failure,
       final LaunchFilter? filter}) = _$UpcomingLaunchesLoading;
   UpcomingLaunchesLoading._() : super._();
 
+  factory UpcomingLaunchesLoading.fromJson(Map<String, dynamic> json) =
+      _$UpcomingLaunchesLoading.fromJson;
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
   @override
   List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
@@ -847,7 +959,8 @@ abstract class _$$UpcomingLaunchesSuccessCopyWith<$Res>
       __$$UpcomingLaunchesSuccessCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          Paginated<Launch>? launchesData,
       List<Launch>? filteredLaunches,
       Failure? failure,
       LaunchFilter? filter});
@@ -901,17 +1014,23 @@ class __$$UpcomingLaunchesSuccessCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
   _$UpcomingLaunchesSuccess(
-      {this.launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson) this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'success',
         super._();
 
+  factory _$UpcomingLaunchesSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$UpcomingLaunchesSuccessFromJson(json);
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   final Paginated<Launch>? launchesData;
   final List<Launch>? _filteredLaunches;
   @override
@@ -926,6 +1045,9 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -945,6 +1067,7 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -963,31 +1086,36 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         initial,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         loading,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         success,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         failure,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
@@ -1000,31 +1128,36 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -1037,31 +1170,36 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -1113,17 +1251,27 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UpcomingLaunchesSuccessToJson(this);
+  }
 }
 
 abstract class UpcomingLaunchesSuccess extends UpcomingLaunchesState {
   factory UpcomingLaunchesSuccess(
-      {final Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          final Paginated<Launch>? launchesData,
       final List<Launch>? filteredLaunches,
       final Failure? failure,
       final LaunchFilter? filter}) = _$UpcomingLaunchesSuccess;
   UpcomingLaunchesSuccess._() : super._();
 
+  factory UpcomingLaunchesSuccess.fromJson(Map<String, dynamic> json) =
+      _$UpcomingLaunchesSuccess.fromJson;
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
   @override
   List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
@@ -1145,7 +1293,8 @@ abstract class _$$UpcomingLaunchesFailureCopyWith<$Res>
       __$$UpcomingLaunchesFailureCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          Paginated<Launch>? launchesData,
       List<Launch>? filteredLaunches,
       Failure? failure,
       LaunchFilter? filter});
@@ -1199,17 +1348,23 @@ class __$$UpcomingLaunchesFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
   _$UpcomingLaunchesFailure(
-      {this.launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson) this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'failure',
         super._();
 
+  factory _$UpcomingLaunchesFailure.fromJson(Map<String, dynamic> json) =>
+      _$$UpcomingLaunchesFailureFromJson(json);
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   final Paginated<Launch>? launchesData;
   final List<Launch>? _filteredLaunches;
   @override
@@ -1224,6 +1379,9 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1243,6 +1401,7 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1261,31 +1420,36 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         initial,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         loading,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         success,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         failure,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
@@ -1298,31 +1462,36 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -1335,31 +1504,36 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -1411,17 +1585,27 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UpcomingLaunchesFailureToJson(this);
+  }
 }
 
 abstract class UpcomingLaunchesFailure extends UpcomingLaunchesState {
   factory UpcomingLaunchesFailure(
-      {final Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          final Paginated<Launch>? launchesData,
       final List<Launch>? filteredLaunches,
       final Failure? failure,
       final LaunchFilter? filter}) = _$UpcomingLaunchesFailure;
   UpcomingLaunchesFailure._() : super._();
 
+  factory UpcomingLaunchesFailure.fromJson(Map<String, dynamic> json) =
+      _$UpcomingLaunchesFailure.fromJson;
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
   @override
   List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
@@ -1444,7 +1628,8 @@ abstract class _$$UpcomingLaunchesRefreshingCopyWith<$Res>
       __$$UpcomingLaunchesRefreshingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          Paginated<Launch>? launchesData,
       List<Launch>? filteredLaunches,
       Failure? failure,
       LaunchFilter? filter});
@@ -1499,17 +1684,23 @@ class __$$UpcomingLaunchesRefreshingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
   _$UpcomingLaunchesRefreshing(
-      {this.launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson) this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'refreshing',
         super._();
 
+  factory _$UpcomingLaunchesRefreshing.fromJson(Map<String, dynamic> json) =>
+      _$$UpcomingLaunchesRefreshingFromJson(json);
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   final Paginated<Launch>? launchesData;
   final List<Launch>? _filteredLaunches;
   @override
@@ -1524,6 +1715,9 @@ class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1543,6 +1737,7 @@ class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1561,31 +1756,36 @@ class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         initial,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         loading,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         success,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
         failure,
     required TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)
@@ -1598,31 +1798,36 @@ class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -1636,31 +1841,36 @@ class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         initial,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         loading,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         success,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
         failure,
     TResult Function(
-            Paginated<Launch>? launchesData,
+            @JsonKey(fromJson: Launch.paginatedFromJson)
+                Paginated<Launch>? launchesData,
             List<Launch>? filteredLaunches,
             Failure? failure,
             LaunchFilter? filter)?
@@ -1712,17 +1922,27 @@ class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UpcomingLaunchesRefreshingToJson(this);
+  }
 }
 
 abstract class UpcomingLaunchesRefreshing extends UpcomingLaunchesState {
   factory UpcomingLaunchesRefreshing(
-      {final Paginated<Launch>? launchesData,
+      {@JsonKey(fromJson: Launch.paginatedFromJson)
+          final Paginated<Launch>? launchesData,
       final List<Launch>? filteredLaunches,
       final Failure? failure,
       final LaunchFilter? filter}) = _$UpcomingLaunchesRefreshing;
   UpcomingLaunchesRefreshing._() : super._();
 
+  factory UpcomingLaunchesRefreshing.fromJson(Map<String, dynamic> json) =
+      _$UpcomingLaunchesRefreshing.fromJson;
+
   @override
+  @JsonKey(fromJson: Launch.paginatedFromJson)
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
   @override
   List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;

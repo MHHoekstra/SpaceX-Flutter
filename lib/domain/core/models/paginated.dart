@@ -23,4 +23,7 @@ class Paginated<T extends Object?> with _$Paginated<T> {
       Map<String, dynamic> json, T Function(Object? json) fromJsonT) {
     return _$PaginatedFromJson<T>(json, fromJsonT);
   }
+
+  Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
+      _$PaginatedToJson<T>(this, toJsonT);
 }

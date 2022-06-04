@@ -9,11 +9,7 @@ part of 'past_launches_bloc.dart';
 _$PastLaunchesInitial _$$PastLaunchesInitialFromJson(
         Map<String, dynamic> json) =>
     _$PastLaunchesInitial(
-      launchesData: json['launchesData'] == null
-          ? null
-          : Paginated<Launch>.fromJson(
-              json['launchesData'] as Map<String, dynamic>,
-              (value) => Launch.fromJson(value as Map<String, dynamic>)),
+      launchesData: Launch.paginatedFromJson(json['launchesData']),
       filteredLaunches: (json['filteredLaunches'] as List<dynamic>?)
           ?.map((e) => Launch.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -29,7 +25,9 @@ _$PastLaunchesInitial _$$PastLaunchesInitialFromJson(
 Map<String, dynamic> _$$PastLaunchesInitialToJson(
         _$PastLaunchesInitial instance) =>
     <String, dynamic>{
-      'launchesData': instance.launchesData,
+      'launchesData': instance.launchesData?.toJson(
+        (value) => value,
+      ),
       'filteredLaunches': instance.filteredLaunches,
       'failure': instance.failure,
       'filter': instance.filter,
@@ -39,11 +37,7 @@ Map<String, dynamic> _$$PastLaunchesInitialToJson(
 _$PastLaunchesLoading _$$PastLaunchesLoadingFromJson(
         Map<String, dynamic> json) =>
     _$PastLaunchesLoading(
-      launchesData: json['launchesData'] == null
-          ? null
-          : Paginated<Launch>.fromJson(
-              json['launchesData'] as Map<String, dynamic>,
-              (value) => Launch.fromJson(value as Map<String, dynamic>)),
+      launchesData: Launch.paginatedFromJson(json['launchesData']),
       filteredLaunches: (json['filteredLaunches'] as List<dynamic>?)
           ?.map((e) => Launch.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -59,7 +53,9 @@ _$PastLaunchesLoading _$$PastLaunchesLoadingFromJson(
 Map<String, dynamic> _$$PastLaunchesLoadingToJson(
         _$PastLaunchesLoading instance) =>
     <String, dynamic>{
-      'launchesData': instance.launchesData,
+      'launchesData': instance.launchesData?.toJson(
+        (value) => value,
+      ),
       'filteredLaunches': instance.filteredLaunches,
       'failure': instance.failure,
       'filter': instance.filter,
@@ -69,11 +65,7 @@ Map<String, dynamic> _$$PastLaunchesLoadingToJson(
 _$PastLaunchesSuccess _$$PastLaunchesSuccessFromJson(
         Map<String, dynamic> json) =>
     _$PastLaunchesSuccess(
-      launchesData: json['launchesData'] == null
-          ? null
-          : Paginated<Launch>.fromJson(
-              json['launchesData'] as Map<String, dynamic>,
-              (value) => Launch.fromJson(value as Map<String, dynamic>)),
+      launchesData: Launch.paginatedFromJson(json['launchesData']),
       filteredLaunches: (json['filteredLaunches'] as List<dynamic>?)
           ?.map((e) => Launch.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -89,7 +81,9 @@ _$PastLaunchesSuccess _$$PastLaunchesSuccessFromJson(
 Map<String, dynamic> _$$PastLaunchesSuccessToJson(
         _$PastLaunchesSuccess instance) =>
     <String, dynamic>{
-      'launchesData': instance.launchesData,
+      'launchesData': instance.launchesData?.toJson(
+        (value) => value,
+      ),
       'filteredLaunches': instance.filteredLaunches,
       'failure': instance.failure,
       'filter': instance.filter,
@@ -99,11 +93,7 @@ Map<String, dynamic> _$$PastLaunchesSuccessToJson(
 _$PastLaunchesFailure _$$PastLaunchesFailureFromJson(
         Map<String, dynamic> json) =>
     _$PastLaunchesFailure(
-      launchesData: json['launchesData'] == null
-          ? null
-          : Paginated<Launch>.fromJson(
-              json['launchesData'] as Map<String, dynamic>,
-              (value) => Launch.fromJson(value as Map<String, dynamic>)),
+      launchesData: Launch.paginatedFromJson(json['launchesData']),
       filteredLaunches: (json['filteredLaunches'] as List<dynamic>?)
           ?.map((e) => Launch.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -119,7 +109,9 @@ _$PastLaunchesFailure _$$PastLaunchesFailureFromJson(
 Map<String, dynamic> _$$PastLaunchesFailureToJson(
         _$PastLaunchesFailure instance) =>
     <String, dynamic>{
-      'launchesData': instance.launchesData,
+      'launchesData': instance.launchesData?.toJson(
+        (value) => value,
+      ),
       'filteredLaunches': instance.filteredLaunches,
       'failure': instance.failure,
       'filter': instance.filter,
@@ -129,11 +121,7 @@ Map<String, dynamic> _$$PastLaunchesFailureToJson(
 _$PastLaunchesRefreshing _$$PastLaunchesRefreshingFromJson(
         Map<String, dynamic> json) =>
     _$PastLaunchesRefreshing(
-      launchesData: json['launchesData'] == null
-          ? null
-          : Paginated<Launch>.fromJson(
-              json['launchesData'] as Map<String, dynamic>,
-              (value) => Launch.fromJson(value as Map<String, dynamic>)),
+      launchesData: Launch.paginatedFromJson(json['launchesData']),
       filteredLaunches: (json['filteredLaunches'] as List<dynamic>?)
           ?.map((e) => Launch.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -149,7 +137,9 @@ _$PastLaunchesRefreshing _$$PastLaunchesRefreshingFromJson(
 Map<String, dynamic> _$$PastLaunchesRefreshingToJson(
         _$PastLaunchesRefreshing instance) =>
     <String, dynamic>{
-      'launchesData': instance.launchesData,
+      'launchesData': instance.launchesData?.toJson(
+        (value) => value,
+      ),
       'filteredLaunches': instance.filteredLaunches,
       'failure': instance.failure,
       'filter': instance.filter,
