@@ -17,14 +17,23 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Paginated<T extends Object?> {
   List<T> get docs => throw _privateConstructorUsedError;
+
   int get totalDocs => throw _privateConstructorUsedError;
+
   int get limit => throw _privateConstructorUsedError;
+
   int get totalPages => throw _privateConstructorUsedError;
+
   int get page => throw _privateConstructorUsedError;
+
   int get pagingCounter => throw _privateConstructorUsedError;
+
   bool get hasPrevPage => throw _privateConstructorUsedError;
+
   bool get hasNextPage => throw _privateConstructorUsedError;
+
   int? get prevPage => throw _privateConstructorUsedError;
+
   int? get nextPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,6 +46,7 @@ abstract class $PaginatedCopyWith<T extends Object?, $Res> {
   factory $PaginatedCopyWith(
           Paginated<T> value, $Res Function(Paginated<T>) then) =
       _$PaginatedCopyWithImpl<T, $Res>;
+
   $Res call(
       {List<T> docs,
       int totalDocs,
@@ -56,6 +66,7 @@ class _$PaginatedCopyWithImpl<T extends Object?, $Res>
   _$PaginatedCopyWithImpl(this._value, this._then);
 
   final Paginated<T> _value;
+
   // ignore: unused_field
   final $Res Function(Paginated<T>) _then;
 
@@ -123,6 +134,7 @@ abstract class _$$_PaginatedCopyWith<T extends Object?, $Res>
   factory _$$_PaginatedCopyWith(
           _$_Paginated<T> value, $Res Function(_$_Paginated<T>) then) =
       __$$_PaginatedCopyWithImpl<T, $Res>;
+
   @override
   $Res call(
       {List<T> docs,
@@ -223,6 +235,7 @@ class _$_Paginated<T extends Object?> implements _Paginated<T> {
       : _docs = docs;
 
   final List<T> _docs;
+
   @override
   List<T> get docs {
     // ignore: implicit_dynamic_type
@@ -292,6 +305,11 @@ class _$_Paginated<T extends Object?> implements _Paginated<T> {
   @override
   _$$_PaginatedCopyWith<T, _$_Paginated<T>> get copyWith =>
       __$$_PaginatedCopyWithImpl<T, _$_Paginated<T>>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson(Object Function(T value) toJsonT) {
+    return _$PaginatedToJson<T>(this, toJsonT);
+  }
 }
 
 abstract class _Paginated<T extends Object?> implements Paginated<T> {
@@ -309,24 +327,34 @@ abstract class _Paginated<T extends Object?> implements Paginated<T> {
 
   @override
   List<T> get docs => throw _privateConstructorUsedError;
+
   @override
   int get totalDocs => throw _privateConstructorUsedError;
+
   @override
   int get limit => throw _privateConstructorUsedError;
+
   @override
   int get totalPages => throw _privateConstructorUsedError;
+
   @override
   int get page => throw _privateConstructorUsedError;
+
   @override
   int get pagingCounter => throw _privateConstructorUsedError;
+
   @override
   bool get hasPrevPage => throw _privateConstructorUsedError;
+
   @override
   bool get hasNextPage => throw _privateConstructorUsedError;
+
   @override
   int? get prevPage => throw _privateConstructorUsedError;
+
   @override
   int? get nextPage => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$$_PaginatedCopyWith<T, _$_Paginated<T>> get copyWith =>

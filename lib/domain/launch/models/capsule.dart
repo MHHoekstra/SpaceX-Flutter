@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'capsule.freezed.dart';
+
 part 'capsule.g.dart';
 
 @freezed
@@ -14,4 +15,6 @@ class Capsule with _$Capsule {
 
   factory Capsule.fromJson(Map<String, Object?> json) =>
       _$CapsuleFromJson(json);
+
+
 }

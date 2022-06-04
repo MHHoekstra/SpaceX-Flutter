@@ -5,6 +5,9 @@ import 'package:space_x_flutter/domain/launch/repositories/launch_repository.dar
 import 'package:space_x_flutter/domain/launch/usecases/get_latest_launch.dart';
 import 'package:space_x_flutter/domain/launch/usecases/get_past_launches.dart';
 import 'package:space_x_flutter/domain/launch/usecases/get_upcoming_launches.dart';
+import 'package:space_x_flutter/presentation/launch/screens/latest_launch_details/latest_launch_details_bloc.dart';
+import 'package:space_x_flutter/presentation/launch/screens/past_launches/past_launches_bloc.dart';
+import 'package:space_x_flutter/presentation/launch/screens/upcoming_launches/upcoming_launches_bloc.dart';
 
 void dependencyInjectionInit() {
   final getIt = GetIt.I;
@@ -19,9 +22,19 @@ void dependencyInjectionInit() {
   //UseCases
   getIt.registerLazySingleton<GetLatestLaunch>(() => GetLatestLaunch(getIt()));
   getIt.registerLazySingleton<GetPastLaunches>(() => GetPastLaunches(getIt()));
-  getIt.registerLazySingleton<GetUpcomingLaunches>(() => GetUpcomingLaunches(
-        getIt(),
-      ));
+  getIt.registerLazySingleton<GetUpcomingLaunches>(
+    () => GetUpcomingLaunches(getIt()),
+  );
 
   //BLoCs
+  getIt.registerLazySingleton<LatestLaunchDetailsBloc>(
+    () => LatestLaunchDetailsBloc(getIt())
+      ..add(LatestLaunchDetailsEvent.loadLatest()),
+  );
+  getIt.registerLazySingleton<PastLaunchesBloc>(
+    () => PastLaunchesBloc(getIt())..add(PastLaunchesEvent.refresh()),
+  );
+  getIt.registerLazySingleton<UpcomingLaunchesBloc>(
+    () => UpcomingLaunchesBloc(getIt())..add(UpcomingLaunchesEvent.refresh()),
+  );
 }

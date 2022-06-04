@@ -134,7 +134,7 @@ void main() {
             .thenAnswer((_) async => http.Response(encodedJson, 200));
 
         //Act
-        await repository.getPastLaunches(20, 1);
+        await repository.getPastLaunches(20, 1, false);
 
         //Assert
         verify(() => client.post(uri, body: body, headers: headers)).called(1);
@@ -146,7 +146,7 @@ void main() {
         final expected = paginated;
 
         //Act
-        final result = await repository.getPastLaunches(20, 1);
+        final result = await repository.getPastLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => throw wrongSideOfFold, (r) => expect(r, expected));
@@ -158,7 +158,7 @@ void main() {
             .thenThrow(const SocketException(''));
 
         //Act
-        final result = await repository.getPastLaunches(20, 1);
+        final result = await repository.getPastLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => expect(l, const Failure.networkFailure()),
@@ -170,7 +170,7 @@ void main() {
             .thenAnswer((_) async => http.Response(encodedJson, 500));
 
         //Act
-        final result = await repository.getPastLaunches(20, 1);
+        final result = await repository.getPastLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
@@ -182,7 +182,7 @@ void main() {
             .thenAnswer((_) async => http.Response(encodedJson, 400));
 
         //Act
-        final result = await repository.getPastLaunches(20, 1);
+        final result = await repository.getPastLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => expect(l, const Failure.clientSideFailure()),
@@ -200,7 +200,7 @@ void main() {
           "options": {
             "limit": 20,
             "page": 1,
-            "sort": {"flight_number": "asc"},
+            "sort": {"flight_number": "desc"},
             "populate": ["payloads", "capsules", "crew", "launchpad"]
           }
         });
@@ -216,7 +216,7 @@ void main() {
             .thenAnswer((_) async => http.Response(encodedJson, 200));
 
         //Act
-        await repository.getUpcomingLaunches(20, 1);
+        await repository.getUpcomingLaunches(20, 1, false);
 
         //Assert
         verify(() => client.post(uri, body: body, headers: headers)).called(1);
@@ -228,7 +228,7 @@ void main() {
         final expected = paginated;
 
         //Act
-        final result = await repository.getUpcomingLaunches(20, 1);
+        final result = await repository.getUpcomingLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => throw wrongSideOfFold, (r) => expect(r, expected));
@@ -240,7 +240,7 @@ void main() {
             .thenThrow(const SocketException(''));
 
         //Act
-        final result = await repository.getUpcomingLaunches(20, 1);
+        final result = await repository.getUpcomingLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => expect(l, const Failure.networkFailure()),
@@ -252,7 +252,7 @@ void main() {
             .thenAnswer((_) async => http.Response(encodedJson, 500));
 
         //Act
-        final result = await repository.getUpcomingLaunches(20, 1);
+        final result = await repository.getUpcomingLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
@@ -264,7 +264,7 @@ void main() {
             .thenAnswer((_) async => http.Response(encodedJson, 400));
 
         //Act
-        final result = await repository.getUpcomingLaunches(20, 1);
+        final result = await repository.getUpcomingLaunches(20, 1, false);
 
         //Assert
         result.fold((l) => expect(l, const Failure.clientSideFailure()),

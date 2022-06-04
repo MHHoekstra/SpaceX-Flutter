@@ -3,6 +3,7 @@ import 'package:space_x_flutter/domain/launch/models/capsule.dart';
 import 'package:space_x_flutter/domain/launch/models/launchpad.dart';
 import 'package:space_x_flutter/domain/launch/models/payload.dart';
 
+import '../../core/models/paginated.dart';
 import 'crew.dart';
 
 part 'launch.freezed.dart';
@@ -23,4 +24,7 @@ class Launch with _$Launch {
   }) = _Launch;
 
   factory Launch.fromJson(Map<String, Object?> json) => _$LaunchFromJson(json);
+
+  static paginatedFromJson(json) => Paginated.fromJson(
+      json, (json) => Launch.fromJson(json as Map<String, dynamic>));
 }

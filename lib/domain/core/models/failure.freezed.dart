@@ -14,6 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Failure _$FailureFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'networkFailure':
+      return NetworkFailure.fromJson(json);
+    case 'serverSideFailure':
+      return ServerSideFailure.fromJson(json);
+    case 'clientSideFailure':
+      return ClientSideFailure.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Failure',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$Failure {
   @optionalTypeArgs
@@ -60,6 +75,7 @@ mixin _$Failure {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -96,9 +112,16 @@ class __$$NetworkFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$NetworkFailure implements NetworkFailure {
-  const _$NetworkFailure();
+  const _$NetworkFailure({final String? $type})
+      : $type = $type ?? 'networkFailure';
+
+  factory _$NetworkFailure.fromJson(Map<String, dynamic> json) =>
+      _$$NetworkFailureFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -111,6 +134,7 @@ class _$NetworkFailure implements NetworkFailure {
         (other.runtimeType == runtimeType && other is _$NetworkFailure);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -181,10 +205,18 @@ class _$NetworkFailure implements NetworkFailure {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$NetworkFailureToJson(this);
+  }
 }
 
 abstract class NetworkFailure implements Failure {
   const factory NetworkFailure() = _$NetworkFailure;
+
+  factory NetworkFailure.fromJson(Map<String, dynamic> json) =
+      _$NetworkFailure.fromJson;
 }
 
 /// @nodoc
@@ -207,9 +239,16 @@ class __$$ServerSideFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ServerSideFailure implements ServerSideFailure {
-  const _$ServerSideFailure();
+  const _$ServerSideFailure({final String? $type})
+      : $type = $type ?? 'serverSideFailure';
+
+  factory _$ServerSideFailure.fromJson(Map<String, dynamic> json) =>
+      _$$ServerSideFailureFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -222,6 +261,7 @@ class _$ServerSideFailure implements ServerSideFailure {
         (other.runtimeType == runtimeType && other is _$ServerSideFailure);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -292,10 +332,18 @@ class _$ServerSideFailure implements ServerSideFailure {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ServerSideFailureToJson(this);
+  }
 }
 
 abstract class ServerSideFailure implements Failure {
   const factory ServerSideFailure() = _$ServerSideFailure;
+
+  factory ServerSideFailure.fromJson(Map<String, dynamic> json) =
+      _$ServerSideFailure.fromJson;
 }
 
 /// @nodoc
@@ -318,9 +366,16 @@ class __$$ClientSideFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ClientSideFailure implements ClientSideFailure {
-  const _$ClientSideFailure();
+  const _$ClientSideFailure({final String? $type})
+      : $type = $type ?? 'clientSideFailure';
+
+  factory _$ClientSideFailure.fromJson(Map<String, dynamic> json) =>
+      _$$ClientSideFailureFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -333,6 +388,7 @@ class _$ClientSideFailure implements ClientSideFailure {
         (other.runtimeType == runtimeType && other is _$ClientSideFailure);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -403,8 +459,16 @@ class _$ClientSideFailure implements ClientSideFailure {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientSideFailureToJson(this);
+  }
 }
 
 abstract class ClientSideFailure implements Failure {
   const factory ClientSideFailure() = _$ClientSideFailure;
+
+  factory ClientSideFailure.fromJson(Map<String, dynamic> json) =
+      _$ClientSideFailure.fromJson;
 }

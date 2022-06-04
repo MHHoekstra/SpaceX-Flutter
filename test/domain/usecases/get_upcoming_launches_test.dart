@@ -18,17 +18,17 @@ void main() {
   group('GetUpcomingLaunches', () {
     test('should call the repository', () async {
       //Arrange
-      when(() => repository.getUpcomingLaunches(5, 1)).thenAnswer(
+      when(() => repository.getUpcomingLaunches(5, 1, false)).thenAnswer(
         (_) async => left(
           const Failure.networkFailure(),
         ),
       );
 
       //Act
-      final result = await usecase(5, 1);
+      final result = await usecase(5, 1, false);
 
       //Assert
-      verify(() => repository.getUpcomingLaunches(5, 1)).called(1);
+      verify(() => repository.getUpcomingLaunches(5, 1, false)).called(1);
 
       expect(result.isLeft(), true);
       result.fold(
