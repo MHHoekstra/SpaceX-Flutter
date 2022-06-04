@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:space_x_flutter/domain/core/models/failure.dart';
 
 import '../../../../domain/launch/models/launch.dart';
+import '../../components/molecules/app_bottom_navigation_bar.dart';
+import '../../components/molecules/failure_indicator.dart';
 import '../../components/templates/launch_details_template.dart';
 import 'latest_launch_details_bloc.dart';
 
 class LatestLaunchDetailsScreen extends StatelessWidget {
   const LatestLaunchDetailsScreen({Key? key}) : super(key: key);
-  static const screenName = 'latestLaunchDetailsScreen';
+  static const screenName = 'LatestLaunchDetailsScreen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Latest')),
+      bottomNavigationBar: const AppBottomNavigationBar(currentIndex: 1),
       body: SafeArea(
-        child: BlocProvider<LatestLaunchDetailsBloc>(
-          create: (context) => GetIt.I()
-            ..add(
-              LatestLaunchDetailsEvent.loadLatest(),
-            ),
-          child: BlocBuilder<LatestLaunchDetailsBloc, LatestLaunchDetailsState>(
-            builder: (context, state) {
-              return state.when(
-                initial: (_, __) => _buildInitial(),
-                loading: (_, __) => _buildLoading(),
-                success: (launch, _) => _buildSuccess(context, state.launch!),
-                failure: (_, failure) => _buildFailure(context),
-              );
-            },
-          ),
+        child: BlocBuilder<LatestLaunchDetailsBloc, LatestLaunchDetailsState>(
+          bloc: GetIt.I(),
+          builder: (context, state) {
+            return state.when(
+              initial: (_, __) => _buildInitial(),
+              loading: (_, __) => _buildLoading(),
+              success: (launch, _) => _buildSuccess(context, state.launch!),
+              failure: (_, failure) => _buildFailure(context, failure!),
+            );
+          },
         ),
       ),
     );
@@ -44,25 +44,31 @@ class LatestLaunchDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFailure(BuildContext context) {
+  Widget _buildFailure(BuildContext context, Failure failure) {
     return Center(
-      child: ElevatedButton(
+      child: FailureIndicator(
+        text: failure.when(
+          networkFailure: () => "No Internet connection.",
+          serverSideFailure: () => "Something is wrong with our servers",
+          clientSideFailure: () => "Whoops, something is not quite right",
+        ),
         onPressed: () {
-          BlocProvider.of<LatestLaunchDetailsBloc>(context)
+          GetIt.I<LatestLaunchDetailsBloc>()
               .add(LatestLaunchDetailsEvent.loadLatest());
         },
-        child: const Text("Try to Fetch Again"),
       ),
     );
   }
 
   Widget _buildSuccess(BuildContext context, Launch launch) {
-    return LaunchDetailsTemplate(
-      launch: launch,
+    return RefreshIndicator(
       onRefresh: () async {
-        BlocProvider.of<LatestLaunchDetailsBloc>(context)
+        GetIt.I<LatestLaunchDetailsBloc>()
             .add(LatestLaunchDetailsEvent.loadLatest());
       },
+      child: LaunchDetailsTemplate(
+        launch: launch,
+      ),
     );
   }
 }
