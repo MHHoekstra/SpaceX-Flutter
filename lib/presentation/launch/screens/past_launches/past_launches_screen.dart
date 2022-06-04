@@ -56,18 +56,24 @@ class PastLaunchesScreen extends StatelessWidget {
     );
   }
 
-  Center _buildFailure(PastLaunchesState state, BuildContext context) {
-    return Center(
-      child: FailureIndicator(
-        text: state.failure!.when(
-          networkFailure: () => "No Internet connection.",
-          serverSideFailure: () => "Something is wrong with our servers",
-          clientSideFailure: () => "Whoops, something is not quite right",
+  Widget _buildFailure(PastLaunchesState state, BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Center(
+          child: FailureIndicator(
+            text: state.failure!.when(
+              networkFailure: () => "No Internet connection.",
+              serverSideFailure: () => "Something is wrong with our servers",
+              clientSideFailure: () => "Whoops, something is not quite right",
+            ),
+            onPressed: () {
+              GetIt.I<PastLaunchesBloc>().add(PastLaunchesEvent.refresh());
+            },
+          ),
         ),
-        onPressed: () {
-          GetIt.I<PastLaunchesBloc>().add(PastLaunchesEvent.refresh());
-        },
-      ),
+      ],
     );
   }
 

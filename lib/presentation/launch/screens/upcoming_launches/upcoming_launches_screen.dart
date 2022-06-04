@@ -56,18 +56,25 @@ class UpcomingLaunchesScreen extends StatelessWidget {
     );
   }
 
-  Center _buildFailure(UpcomingLaunchesState state, BuildContext context) {
-    return Center(
-      child: FailureIndicator(
-        text: state.failure!.when(
-          networkFailure: () => "No Internet connection.",
-          serverSideFailure: () => "Something is wrong with our servers",
-          clientSideFailure: () => "Whoops, something is not quite right",
+  Widget _buildFailure(UpcomingLaunchesState state, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: FailureIndicator(
+            text: state.failure!.when(
+              networkFailure: () => "No Internet connection.",
+              serverSideFailure: () => "Something is wrong with our servers",
+              clientSideFailure: () => "Whoops, something is not quite right",
+            ),
+            onPressed: () {
+              GetIt.I<UpcomingLaunchesBloc>()
+                  .add(UpcomingLaunchesEvent.refresh());
+            },
+          ),
         ),
-        onPressed: () {
-          GetIt.I<UpcomingLaunchesBloc>().add(UpcomingLaunchesEvent.refresh());
-        },
-      ),
+      ],
     );
   }
 

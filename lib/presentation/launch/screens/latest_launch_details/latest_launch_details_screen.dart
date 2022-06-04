@@ -45,18 +45,24 @@ class LatestLaunchDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildFailure(BuildContext context, Failure failure) {
-    return Center(
-      child: FailureIndicator(
-        text: failure.when(
-          networkFailure: () => "No Internet connection.",
-          serverSideFailure: () => "Something is wrong with our servers",
-          clientSideFailure: () => "Whoops, something is not quite right",
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Center(
+          child: FailureIndicator(
+            text: failure.when(
+              networkFailure: () => "No Internet connection.",
+              serverSideFailure: () => "Something is wrong with our servers",
+              clientSideFailure: () => "Whoops, something is not quite right",
+            ),
+            onPressed: () {
+              GetIt.I<LatestLaunchDetailsBloc>()
+                  .add(LatestLaunchDetailsEvent.loadLatest());
+            },
+          ),
         ),
-        onPressed: () {
-          GetIt.I<LatestLaunchDetailsBloc>()
-              .add(LatestLaunchDetailsEvent.loadLatest());
-        },
-      ),
+      ],
     );
   }
 
