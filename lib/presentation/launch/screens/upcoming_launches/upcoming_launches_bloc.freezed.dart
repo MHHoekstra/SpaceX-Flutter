@@ -46,6 +46,12 @@ mixin _$UpcomingLaunchesState {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +80,12 @@ mixin _$UpcomingLaunchesState {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -102,6 +114,12 @@ mixin _$UpcomingLaunchesState {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,6 +129,7 @@ mixin _$UpcomingLaunchesState {
     required TResult Function(UpcomingLaunchesLoading value) loading,
     required TResult Function(UpcomingLaunchesSuccess value) success,
     required TResult Function(UpcomingLaunchesFailure value) failure,
+    required TResult Function(UpcomingLaunchesRefreshing value) refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +138,7 @@ mixin _$UpcomingLaunchesState {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -127,6 +147,7 @@ mixin _$UpcomingLaunchesState {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -149,6 +170,7 @@ abstract class $UpcomingLaunchesStateCopyWith<$Res> {
 
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   $FailureCopyWith<$Res>? get failure;
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -208,6 +230,17 @@ class _$UpcomingLaunchesStateCopyWithImpl<$Res>
       return _then(_value.copyWith(failure: value));
     });
   }
+
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter {
+    if (_value.filter == null) {
+      return null;
+    }
+
+    return $LaunchFilterCopyWith<$Res>(_value.filter!, (value) {
+      return _then(_value.copyWith(filter: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -227,6 +260,8 @@ abstract class _$$UpcomingLaunchesInitialCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -355,6 +390,12 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return initial(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -386,6 +427,12 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return initial?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -417,6 +464,12 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -432,6 +485,7 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
     required TResult Function(UpcomingLaunchesLoading value) loading,
     required TResult Function(UpcomingLaunchesSuccess value) success,
     required TResult Function(UpcomingLaunchesFailure value) failure,
+    required TResult Function(UpcomingLaunchesRefreshing value) refreshing,
   }) {
     return initial(this);
   }
@@ -443,6 +497,7 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
   }) {
     return initial?.call(this);
   }
@@ -454,6 +509,7 @@ class _$UpcomingLaunchesInitial extends UpcomingLaunchesInitial {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -502,6 +558,8 @@ abstract class _$$UpcomingLaunchesLoadingCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -630,6 +688,12 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return loading(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -661,6 +725,12 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return loading?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -692,6 +762,12 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -707,6 +783,7 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
     required TResult Function(UpcomingLaunchesLoading value) loading,
     required TResult Function(UpcomingLaunchesSuccess value) success,
     required TResult Function(UpcomingLaunchesFailure value) failure,
+    required TResult Function(UpcomingLaunchesRefreshing value) refreshing,
   }) {
     return loading(this);
   }
@@ -718,6 +795,7 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
   }) {
     return loading?.call(this);
   }
@@ -729,6 +807,7 @@ class _$UpcomingLaunchesLoading extends UpcomingLaunchesLoading {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -777,6 +856,8 @@ abstract class _$$UpcomingLaunchesSuccessCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -905,6 +986,12 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return success(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -936,6 +1023,12 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return success?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -967,6 +1060,12 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -982,6 +1081,7 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
     required TResult Function(UpcomingLaunchesLoading value) loading,
     required TResult Function(UpcomingLaunchesSuccess value) success,
     required TResult Function(UpcomingLaunchesFailure value) failure,
+    required TResult Function(UpcomingLaunchesRefreshing value) refreshing,
   }) {
     return success(this);
   }
@@ -993,6 +1093,7 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
   }) {
     return success?.call(this);
   }
@@ -1004,6 +1105,7 @@ class _$UpcomingLaunchesSuccess extends UpcomingLaunchesSuccess {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1052,6 +1154,8 @@ abstract class _$$UpcomingLaunchesFailureCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -1180,6 +1284,12 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return failure(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -1211,6 +1321,12 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return failure?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -1242,6 +1358,12 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1257,6 +1379,7 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
     required TResult Function(UpcomingLaunchesLoading value) loading,
     required TResult Function(UpcomingLaunchesSuccess value) success,
     required TResult Function(UpcomingLaunchesFailure value) failure,
+    required TResult Function(UpcomingLaunchesRefreshing value) refreshing,
   }) {
     return failure(this);
   }
@@ -1268,6 +1391,7 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
   }) {
     return failure?.call(this);
   }
@@ -1279,6 +1403,7 @@ class _$UpcomingLaunchesFailure extends UpcomingLaunchesFailure {
     TResult Function(UpcomingLaunchesLoading value)? loading,
     TResult Function(UpcomingLaunchesSuccess value)? success,
     TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1308,6 +1433,307 @@ abstract class UpcomingLaunchesFailure extends UpcomingLaunchesState {
   @JsonKey(ignore: true)
   _$$UpcomingLaunchesFailureCopyWith<_$UpcomingLaunchesFailure> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpcomingLaunchesRefreshingCopyWith<$Res>
+    implements $UpcomingLaunchesStateCopyWith<$Res> {
+  factory _$$UpcomingLaunchesRefreshingCopyWith(
+          _$UpcomingLaunchesRefreshing value,
+          $Res Function(_$UpcomingLaunchesRefreshing) then) =
+      __$$UpcomingLaunchesRefreshingCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {Paginated<Launch>? launchesData,
+      List<Launch>? filteredLaunches,
+      Failure? failure,
+      LaunchFilter? filter});
+
+  @override
+  $PaginatedCopyWith<Launch, $Res>? get launchesData;
+  @override
+  $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
+}
+
+/// @nodoc
+class __$$UpcomingLaunchesRefreshingCopyWithImpl<$Res>
+    extends _$UpcomingLaunchesStateCopyWithImpl<$Res>
+    implements _$$UpcomingLaunchesRefreshingCopyWith<$Res> {
+  __$$UpcomingLaunchesRefreshingCopyWithImpl(
+      _$UpcomingLaunchesRefreshing _value,
+      $Res Function(_$UpcomingLaunchesRefreshing) _then)
+      : super(_value, (v) => _then(v as _$UpcomingLaunchesRefreshing));
+
+  @override
+  _$UpcomingLaunchesRefreshing get _value =>
+      super._value as _$UpcomingLaunchesRefreshing;
+
+  @override
+  $Res call({
+    Object? launchesData = freezed,
+    Object? filteredLaunches = freezed,
+    Object? failure = freezed,
+    Object? filter = freezed,
+  }) {
+    return _then(_$UpcomingLaunchesRefreshing(
+      launchesData: launchesData == freezed
+          ? _value.launchesData
+          : launchesData // ignore: cast_nullable_to_non_nullable
+              as Paginated<Launch>?,
+      filteredLaunches: filteredLaunches == freezed
+          ? _value._filteredLaunches
+          : filteredLaunches // ignore: cast_nullable_to_non_nullable
+              as List<Launch>?,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as LaunchFilter?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpcomingLaunchesRefreshing extends UpcomingLaunchesRefreshing {
+  _$UpcomingLaunchesRefreshing(
+      {this.launchesData,
+      final List<Launch>? filteredLaunches,
+      this.failure,
+      this.filter})
+      : _filteredLaunches = filteredLaunches,
+        super._();
+
+  @override
+  final Paginated<Launch>? launchesData;
+  final List<Launch>? _filteredLaunches;
+  @override
+  List<Launch>? get filteredLaunches {
+    final value = _filteredLaunches;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final Failure? failure;
+  @override
+  final LaunchFilter? filter;
+
+  @override
+  String toString() {
+    return 'UpcomingLaunchesState.refreshing(launchesData: $launchesData, filteredLaunches: $filteredLaunches, failure: $failure, filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpcomingLaunchesRefreshing &&
+            const DeepCollectionEquality()
+                .equals(other.launchesData, launchesData) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredLaunches, _filteredLaunches) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.filter, filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(launchesData),
+      const DeepCollectionEquality().hash(_filteredLaunches),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(filter));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$UpcomingLaunchesRefreshingCopyWith<_$UpcomingLaunchesRefreshing>
+      get copyWith => __$$UpcomingLaunchesRefreshingCopyWithImpl<
+          _$UpcomingLaunchesRefreshing>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        initial,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        loading,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        success,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
+  }) {
+    return refreshing(launchesData, filteredLaunches, this.failure, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        initial,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        loading,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        success,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
+  }) {
+    return refreshing?.call(
+        launchesData, filteredLaunches, this.failure, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        initial,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        loading,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        success,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
+    required TResult orElse(),
+  }) {
+    if (refreshing != null) {
+      return refreshing(launchesData, filteredLaunches, this.failure, filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UpcomingLaunchesInitial value) initial,
+    required TResult Function(UpcomingLaunchesLoading value) loading,
+    required TResult Function(UpcomingLaunchesSuccess value) success,
+    required TResult Function(UpcomingLaunchesFailure value) failure,
+    required TResult Function(UpcomingLaunchesRefreshing value) refreshing,
+  }) {
+    return refreshing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UpcomingLaunchesInitial value)? initial,
+    TResult Function(UpcomingLaunchesLoading value)? loading,
+    TResult Function(UpcomingLaunchesSuccess value)? success,
+    TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
+  }) {
+    return refreshing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UpcomingLaunchesInitial value)? initial,
+    TResult Function(UpcomingLaunchesLoading value)? loading,
+    TResult Function(UpcomingLaunchesSuccess value)? success,
+    TResult Function(UpcomingLaunchesFailure value)? failure,
+    TResult Function(UpcomingLaunchesRefreshing value)? refreshing,
+    required TResult orElse(),
+  }) {
+    if (refreshing != null) {
+      return refreshing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpcomingLaunchesRefreshing extends UpcomingLaunchesState {
+  factory UpcomingLaunchesRefreshing(
+      {final Paginated<Launch>? launchesData,
+      final List<Launch>? filteredLaunches,
+      final Failure? failure,
+      final LaunchFilter? filter}) = _$UpcomingLaunchesRefreshing;
+  UpcomingLaunchesRefreshing._() : super._();
+
+  @override
+  Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
+  @override
+  List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
+  @override
+  Failure? get failure => throw _privateConstructorUsedError;
+  @override
+  LaunchFilter? get filter => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$UpcomingLaunchesRefreshingCopyWith<_$UpcomingLaunchesRefreshing>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1503,6 +1929,8 @@ abstract class _$$UpcomingLaunchesFilterChangedCopyWith<$Res> {
           $Res Function(_$UpcomingLaunchesFilterChanged) then) =
       __$$UpcomingLaunchesFilterChangedCopyWithImpl<$Res>;
   $Res call({LaunchFilter filter});
+
+  $LaunchFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -1528,6 +1956,13 @@ class __$$UpcomingLaunchesFilterChangedCopyWithImpl<$Res>
           : filter // ignore: cast_nullable_to_non_nullable
               as LaunchFilter,
     ));
+  }
+
+  @override
+  $LaunchFilterCopyWith<$Res> get filter {
+    return $LaunchFilterCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value));
+    });
   }
 }
 

@@ -27,13 +27,14 @@ void dependencyInjectionInit() {
   );
 
   //BLoCs
-  getIt.registerFactory<LatestLaunchDetailsBloc>(
-    () => LatestLaunchDetailsBloc(getIt()),
+  getIt.registerLazySingleton<LatestLaunchDetailsBloc>(
+    () => LatestLaunchDetailsBloc(getIt())
+      ..add(LatestLaunchDetailsEvent.loadLatest()),
   );
-  getIt.registerFactory<PastLaunchesBloc>(
-    () => PastLaunchesBloc(getIt()),
+  getIt.registerLazySingleton<PastLaunchesBloc>(
+    () => PastLaunchesBloc(getIt())..add(PastLaunchesEvent.refresh()),
   );
-  getIt.registerFactory<UpcomingLaunchesBloc>(
-    () => UpcomingLaunchesBloc(getIt()),
+  getIt.registerLazySingleton<UpcomingLaunchesBloc>(
+    () => UpcomingLaunchesBloc(getIt())..add(UpcomingLaunchesEvent.refresh()),
   );
 }

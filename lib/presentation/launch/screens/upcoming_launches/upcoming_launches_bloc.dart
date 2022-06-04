@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:space_x_flutter/domain/launch/models/launch_filter.dart';
 
 import '../../../../domain/core/models/failure.dart';
 import '../../../../domain/core/models/paginated.dart';
@@ -12,7 +11,15 @@ part 'upcoming_launches_bloc.freezed.dart';
 
 class UpcomingLaunchesBloc
     extends Bloc<UpcomingLaunchesEvent, UpcomingLaunchesState> {
-  UpcomingLaunchesBloc(this._usecase) : super(UpcomingLaunchesState.initial()) {
+  UpcomingLaunchesBloc(this._usecase)
+      : super(
+          UpcomingLaunchesState.initial(
+            filter: LaunchFilter(
+              contains: '',
+              orderBy: LaunchFilterOrderBy.flightNumberAsc,
+            ),
+          ),
+        ) {
     on<UpcomingLaunchesEvent>(
       (event, emit) => event.when(
         getMoreLaunches: () => _handleMoreLaunches(emit),
@@ -25,8 +32,12 @@ class UpcomingLaunchesBloc
   final GetUpcomingLaunches _usecase;
 
   void _handleRefresh(Emitter emit) async {
+    if (state is UpcomingLaunchesLoading ||
+        state is UpcomingLaunchesRefreshing) {
+      return;
+    }
     emit(
-      UpcomingLaunchesState.loading(
+      UpcomingLaunchesState.refreshing(
         filter: state.filter,
         launchesData: state.launchesData,
         filteredLaunches: state.filteredLaunches,
@@ -60,6 +71,10 @@ class UpcomingLaunchesBloc
   }
 
   void _handleMoreLaunches(Emitter emit) async {
+    if (state is UpcomingLaunchesLoading ||
+        state is UpcomingLaunchesRefreshing) {
+      return;
+    }
     if (state.launchesData == null) {
       emit(
         UpcomingLaunchesState.loading(
@@ -120,14 +135,18 @@ class UpcomingLaunchesBloc
           (r) {
             final launchesData =
                 r.copyWith(docs: (state.launchesData?.docs ?? []) + r.docs);
+            final filteredLaunches =
+                _applyFilter(launchesData.docs, state.filter);
             emit(
               UpcomingLaunchesState.success(
                   failure: null,
                   launchesData: launchesData,
-                  filteredLaunches:
-                      _applyFilter(launchesData.docs, state.filter),
+                  filteredLaunches: filteredLaunches,
                   filter: state.filter),
             );
+            if (filteredLaunches.length < 20) {
+              add(UpcomingLaunchesEvent.getMoreLaunches());
+            }
           },
         );
       } else {
@@ -141,36 +160,46 @@ class UpcomingLaunchesBloc
     }
   }
 
-  void _handleFilterChanged(LaunchFilter filter, Emitter emit) {}
-
-  List<Launch> _applyFilter(List<Launch> list, LaunchFilter? filter) {
-    if (filter == null) {
-      return _orderBy(list, null);
+  void _handleFilterChanged(LaunchFilter filter, Emitter emit) {
+    if (state.filter?.orderBy != filter.orderBy) {
+      emit(UpcomingLaunchesState.success(
+        filter: filter,
+        filteredLaunches: state.filteredLaunches,
+        launchesData: state.launchesData,
+        failure: state.failure,
+      ));
+      add(UpcomingLaunchesEvent.refresh());
     } else {
-      List<Launch> aux = list;
-      if (filter.contains.isNotEmpty) {
-        aux.retainWhere((element) =>
-            element.name.contains(filter.contains) ||
-            element.flightNumber.toString().contains(filter.contains));
+      final filtered = _applyFilter(state.launchesData?.docs ?? [], filter);
+      emit(
+        UpcomingLaunchesState.success(
+            failure: state.failure,
+            launchesData: state.launchesData,
+            filteredLaunches: filtered,
+            filter: filter),
+      );
+      if (filtered.length < 20) {
+        add(UpcomingLaunchesEvent.getMoreLaunches());
       }
-      return _orderBy(aux, filter.orderBy);
     }
   }
 
-  List<Launch> _orderBy(List<Launch> list, LaunchFilterOrderBy? orderBy) {
-    List<Launch> aux = List.from(list);
-    switch (orderBy) {
-      case LaunchFilterOrderBy.flightNumberAsc:
-        aux.sort((a, b) => a.flightNumber.compareTo(b.flightNumber));
-        break;
-      case LaunchFilterOrderBy.flightNumberDesc:
-        aux.sort((a, b) => b.flightNumber.compareTo(a.flightNumber));
-        break;
-      default:
-        aux.sort((a, b) => b.flightNumber.compareTo(a.flightNumber));
-        break;
+  List<Launch> _applyFilter(List<Launch> list, LaunchFilter? filter) {
+    if (filter == null) {
+      return list;
+    } else {
+      List<Launch> aux = List.from(list);
+      if (filter.contains.isNotEmpty) {
+        aux.retainWhere((element) =>
+            element.name.toLowerCase().contains(
+                  filter.contains.toLowerCase(),
+                ) ||
+            element.flightNumber.toString().contains(
+                  filter.contains.toLowerCase(),
+                ));
+      }
+      return aux;
     }
-    return aux;
   }
 }
 
@@ -205,6 +234,13 @@ class UpcomingLaunchesState with _$UpcomingLaunchesState {
     Failure? failure,
     LaunchFilter? filter,
   }) = UpcomingLaunchesFailure;
+
+  factory UpcomingLaunchesState.refreshing({
+    Paginated<Launch>? launchesData,
+    List<Launch>? filteredLaunches,
+    Failure? failure,
+    LaunchFilter? filter,
+  }) = UpcomingLaunchesRefreshing;
 }
 
 @freezed
