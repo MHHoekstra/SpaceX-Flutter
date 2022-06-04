@@ -22,7 +22,7 @@ class CapsulesSection extends StatelessWidget {
             height: 24,
           ),
           Text(
-            'Payloads',
+            'Capsules',
             textAlign: TextAlign.left,
             style: Theme.of(context).textTheme.headline6,
           ),
