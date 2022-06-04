@@ -14,6 +14,7 @@ void main() {
           agency: "NASA",
           image: "https://i.imgur.com/ooaayWf.png",
           status: "active",
+          role: null,
         );
 
         //Act

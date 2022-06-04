@@ -41,7 +41,7 @@ void main() {
       act: (bloc) => bloc.add(PastLaunchesEvent.refresh()),
       wait: const Duration(milliseconds: 100),
       expect: () => [
-        PastLaunchesState.loading(),
+        PastLaunchesState.refreshing(),
         PastLaunchesState.success(
             launchesData: launch, filteredLaunches: launch.docs)
       ],
@@ -54,7 +54,7 @@ void main() {
       act: (bloc) => bloc.add(PastLaunchesEvent.refresh()),
       wait: const Duration(milliseconds: 100),
       expect: () => [
-        PastLaunchesState.loading(),
+        PastLaunchesState.refreshing(),
         PastLaunchesState.failure(failure: failure),
       ],
     );
@@ -81,37 +81,6 @@ void main() {
       expect: () => [
         PastLaunchesState.loading(),
         PastLaunchesState.failure(failure: failure),
-      ],
-    );
-    blocTest<PastLaunchesBloc, PastLaunchesState>(
-        'on getMore should keep the old data plus the next when success ',
-        setUp: () => when(() => usecase(20, 2, false))
-            .thenAnswer((_) async => right(launch)),
-        build: () => PastLaunchesBloc(usecase),
-        seed: () => PastLaunchesState.success(
-            failure: failure,
-            filteredLaunches: launch.docs,
-            launchesData: launch),
-        act: (bloc) => bloc.add(PastLaunchesEvent.getMoreLaunches()),
-        wait: const Duration(milliseconds: 100),
-        verify: (bloc) {});
-    blocTest<PastLaunchesBloc, PastLaunchesState>(
-      'on getMore should keep the data when its a failure',
-      setUp: () => when(() => usecase(20, 2, false))
-          .thenAnswer((_) async => left(failure)),
-      build: () => PastLaunchesBloc(usecase),
-      seed: () => PastLaunchesState.success(
-          filteredLaunches: launch.docs, launchesData: launch),
-      act: (bloc) => bloc.add(PastLaunchesEvent.getMoreLaunches()),
-      wait: const Duration(milliseconds: 100),
-      expect: () => [
-        PastLaunchesState.loading(
-            filteredLaunches: launch.docs, launchesData: launch),
-        PastLaunchesState.failure(
-          failure: failure,
-          filteredLaunches: launch.docs,
-          launchesData: launch,
-        ),
       ],
     );
   });
