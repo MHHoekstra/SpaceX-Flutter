@@ -14,6 +14,25 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PastLaunchesState _$PastLaunchesStateFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'initial':
+      return PastLaunchesInitial.fromJson(json);
+    case 'loading':
+      return PastLaunchesLoading.fromJson(json);
+    case 'success':
+      return PastLaunchesSuccess.fromJson(json);
+    case 'failure':
+      return PastLaunchesFailure.fromJson(json);
+    case 'refreshing':
+      return PastLaunchesRefreshing.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'PastLaunchesState',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$PastLaunchesState {
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
@@ -46,6 +65,12 @@ mixin _$PastLaunchesState {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +99,12 @@ mixin _$PastLaunchesState {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -102,6 +133,12 @@ mixin _$PastLaunchesState {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,6 +148,7 @@ mixin _$PastLaunchesState {
     required TResult Function(PastLaunchesLoading value) loading,
     required TResult Function(PastLaunchesSuccess value) success,
     required TResult Function(PastLaunchesFailure value) failure,
+    required TResult Function(PastLaunchesRefreshing value) refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +157,7 @@ mixin _$PastLaunchesState {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -127,10 +166,11 @@ mixin _$PastLaunchesState {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PastLaunchesStateCopyWith<PastLaunchesState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -149,6 +189,7 @@ abstract class $PastLaunchesStateCopyWith<$Res> {
 
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   $FailureCopyWith<$Res>? get failure;
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -208,6 +249,17 @@ class _$PastLaunchesStateCopyWithImpl<$Res>
       return _then(_value.copyWith(failure: value));
     });
   }
+
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter {
+    if (_value.filter == null) {
+      return null;
+    }
+
+    return $LaunchFilterCopyWith<$Res>(_value.filter!, (value) {
+      return _then(_value.copyWith(filter: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -227,6 +279,8 @@ abstract class _$$PastLaunchesInitialCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -269,15 +323,20 @@ class __$$PastLaunchesInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PastLaunchesInitial extends PastLaunchesInitial {
   _$PastLaunchesInitial(
       {this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'initial',
         super._();
+
+  factory _$PastLaunchesInitial.fromJson(Map<String, dynamic> json) =>
+      _$$PastLaunchesInitialFromJson(json);
 
   @override
   final Paginated<Launch>? launchesData;
@@ -294,6 +353,9 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -313,6 +375,7 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -354,6 +417,12 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return initial(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -385,6 +454,12 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return initial?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -416,6 +491,12 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -431,6 +512,7 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
     required TResult Function(PastLaunchesLoading value) loading,
     required TResult Function(PastLaunchesSuccess value) success,
     required TResult Function(PastLaunchesFailure value) failure,
+    required TResult Function(PastLaunchesRefreshing value) refreshing,
   }) {
     return initial(this);
   }
@@ -442,6 +524,7 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
   }) {
     return initial?.call(this);
   }
@@ -453,12 +536,18 @@ class _$PastLaunchesInitial extends PastLaunchesInitial {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (initial != null) {
       return initial(this);
     }
     return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PastLaunchesInitialToJson(this);
   }
 }
 
@@ -469,6 +558,9 @@ abstract class PastLaunchesInitial extends PastLaunchesState {
       final Failure? failure,
       final LaunchFilter? filter}) = _$PastLaunchesInitial;
   PastLaunchesInitial._() : super._();
+
+  factory PastLaunchesInitial.fromJson(Map<String, dynamic> json) =
+      _$PastLaunchesInitial.fromJson;
 
   @override
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
@@ -501,6 +593,8 @@ abstract class _$$PastLaunchesLoadingCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -543,15 +637,20 @@ class __$$PastLaunchesLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PastLaunchesLoading extends PastLaunchesLoading {
   _$PastLaunchesLoading(
       {this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'loading',
         super._();
+
+  factory _$PastLaunchesLoading.fromJson(Map<String, dynamic> json) =>
+      _$$PastLaunchesLoadingFromJson(json);
 
   @override
   final Paginated<Launch>? launchesData;
@@ -568,6 +667,9 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -587,6 +689,7 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -628,6 +731,12 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return loading(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -659,6 +768,12 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return loading?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -690,6 +805,12 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -705,6 +826,7 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
     required TResult Function(PastLaunchesLoading value) loading,
     required TResult Function(PastLaunchesSuccess value) success,
     required TResult Function(PastLaunchesFailure value) failure,
+    required TResult Function(PastLaunchesRefreshing value) refreshing,
   }) {
     return loading(this);
   }
@@ -716,6 +838,7 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
   }) {
     return loading?.call(this);
   }
@@ -727,12 +850,18 @@ class _$PastLaunchesLoading extends PastLaunchesLoading {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (loading != null) {
       return loading(this);
     }
     return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PastLaunchesLoadingToJson(this);
   }
 }
 
@@ -743,6 +872,9 @@ abstract class PastLaunchesLoading extends PastLaunchesState {
       final Failure? failure,
       final LaunchFilter? filter}) = _$PastLaunchesLoading;
   PastLaunchesLoading._() : super._();
+
+  factory PastLaunchesLoading.fromJson(Map<String, dynamic> json) =
+      _$PastLaunchesLoading.fromJson;
 
   @override
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
@@ -775,6 +907,8 @@ abstract class _$$PastLaunchesSuccessCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -817,15 +951,20 @@ class __$$PastLaunchesSuccessCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PastLaunchesSuccess extends PastLaunchesSuccess {
   _$PastLaunchesSuccess(
       {this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'success',
         super._();
+
+  factory _$PastLaunchesSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$PastLaunchesSuccessFromJson(json);
 
   @override
   final Paginated<Launch>? launchesData;
@@ -842,6 +981,9 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -861,6 +1003,7 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -902,6 +1045,12 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return success(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -933,6 +1082,12 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return success?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -964,6 +1119,12 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -979,6 +1140,7 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
     required TResult Function(PastLaunchesLoading value) loading,
     required TResult Function(PastLaunchesSuccess value) success,
     required TResult Function(PastLaunchesFailure value) failure,
+    required TResult Function(PastLaunchesRefreshing value) refreshing,
   }) {
     return success(this);
   }
@@ -990,6 +1152,7 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
   }) {
     return success?.call(this);
   }
@@ -1001,12 +1164,18 @@ class _$PastLaunchesSuccess extends PastLaunchesSuccess {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (success != null) {
       return success(this);
     }
     return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PastLaunchesSuccessToJson(this);
   }
 }
 
@@ -1017,6 +1186,9 @@ abstract class PastLaunchesSuccess extends PastLaunchesState {
       final Failure? failure,
       final LaunchFilter? filter}) = _$PastLaunchesSuccess;
   PastLaunchesSuccess._() : super._();
+
+  factory PastLaunchesSuccess.fromJson(Map<String, dynamic> json) =
+      _$PastLaunchesSuccess.fromJson;
 
   @override
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
@@ -1049,6 +1221,8 @@ abstract class _$$PastLaunchesFailureCopyWith<$Res>
   $PaginatedCopyWith<Launch, $Res>? get launchesData;
   @override
   $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
 }
 
 /// @nodoc
@@ -1091,15 +1265,20 @@ class __$$PastLaunchesFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PastLaunchesFailure extends PastLaunchesFailure {
   _$PastLaunchesFailure(
       {this.launchesData,
       final List<Launch>? filteredLaunches,
       this.failure,
-      this.filter})
+      this.filter,
+      final String? $type})
       : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'failure',
         super._();
+
+  factory _$PastLaunchesFailure.fromJson(Map<String, dynamic> json) =>
+      _$$PastLaunchesFailureFromJson(json);
 
   @override
   final Paginated<Launch>? launchesData;
@@ -1116,6 +1295,9 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
   final Failure? failure;
   @override
   final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -1135,6 +1317,7 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
             const DeepCollectionEquality().equals(other.filter, filter));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1176,6 +1359,12 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
             Failure? failure,
             LaunchFilter? filter)
         failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
   }) {
     return failure(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -1207,6 +1396,12 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
   }) {
     return failure?.call(launchesData, filteredLaunches, this.failure, filter);
   }
@@ -1238,6 +1433,12 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
             Failure? failure,
             LaunchFilter? filter)?
         failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1253,6 +1454,7 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
     required TResult Function(PastLaunchesLoading value) loading,
     required TResult Function(PastLaunchesSuccess value) success,
     required TResult Function(PastLaunchesFailure value) failure,
+    required TResult Function(PastLaunchesRefreshing value) refreshing,
   }) {
     return failure(this);
   }
@@ -1264,6 +1466,7 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
   }) {
     return failure?.call(this);
   }
@@ -1275,12 +1478,18 @@ class _$PastLaunchesFailure extends PastLaunchesFailure {
     TResult Function(PastLaunchesLoading value)? loading,
     TResult Function(PastLaunchesSuccess value)? success,
     TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
     required TResult orElse(),
   }) {
     if (failure != null) {
       return failure(this);
     }
     return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PastLaunchesFailureToJson(this);
   }
 }
 
@@ -1291,6 +1500,9 @@ abstract class PastLaunchesFailure extends PastLaunchesState {
       final Failure? failure,
       final LaunchFilter? filter}) = _$PastLaunchesFailure;
   PastLaunchesFailure._() : super._();
+
+  factory PastLaunchesFailure.fromJson(Map<String, dynamic> json) =
+      _$PastLaunchesFailure.fromJson;
 
   @override
   Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
@@ -1303,6 +1515,322 @@ abstract class PastLaunchesFailure extends PastLaunchesState {
   @override
   @JsonKey(ignore: true)
   _$$PastLaunchesFailureCopyWith<_$PastLaunchesFailure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PastLaunchesRefreshingCopyWith<$Res>
+    implements $PastLaunchesStateCopyWith<$Res> {
+  factory _$$PastLaunchesRefreshingCopyWith(_$PastLaunchesRefreshing value,
+          $Res Function(_$PastLaunchesRefreshing) then) =
+      __$$PastLaunchesRefreshingCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {Paginated<Launch>? launchesData,
+      List<Launch>? filteredLaunches,
+      Failure? failure,
+      LaunchFilter? filter});
+
+  @override
+  $PaginatedCopyWith<Launch, $Res>? get launchesData;
+  @override
+  $FailureCopyWith<$Res>? get failure;
+  @override
+  $LaunchFilterCopyWith<$Res>? get filter;
+}
+
+/// @nodoc
+class __$$PastLaunchesRefreshingCopyWithImpl<$Res>
+    extends _$PastLaunchesStateCopyWithImpl<$Res>
+    implements _$$PastLaunchesRefreshingCopyWith<$Res> {
+  __$$PastLaunchesRefreshingCopyWithImpl(_$PastLaunchesRefreshing _value,
+      $Res Function(_$PastLaunchesRefreshing) _then)
+      : super(_value, (v) => _then(v as _$PastLaunchesRefreshing));
+
+  @override
+  _$PastLaunchesRefreshing get _value =>
+      super._value as _$PastLaunchesRefreshing;
+
+  @override
+  $Res call({
+    Object? launchesData = freezed,
+    Object? filteredLaunches = freezed,
+    Object? failure = freezed,
+    Object? filter = freezed,
+  }) {
+    return _then(_$PastLaunchesRefreshing(
+      launchesData: launchesData == freezed
+          ? _value.launchesData
+          : launchesData // ignore: cast_nullable_to_non_nullable
+              as Paginated<Launch>?,
+      filteredLaunches: filteredLaunches == freezed
+          ? _value._filteredLaunches
+          : filteredLaunches // ignore: cast_nullable_to_non_nullable
+              as List<Launch>?,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as LaunchFilter?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PastLaunchesRefreshing extends PastLaunchesRefreshing {
+  _$PastLaunchesRefreshing(
+      {this.launchesData,
+      final List<Launch>? filteredLaunches,
+      this.failure,
+      this.filter,
+      final String? $type})
+      : _filteredLaunches = filteredLaunches,
+        $type = $type ?? 'refreshing',
+        super._();
+
+  factory _$PastLaunchesRefreshing.fromJson(Map<String, dynamic> json) =>
+      _$$PastLaunchesRefreshingFromJson(json);
+
+  @override
+  final Paginated<Launch>? launchesData;
+  final List<Launch>? _filteredLaunches;
+  @override
+  List<Launch>? get filteredLaunches {
+    final value = _filteredLaunches;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final Failure? failure;
+  @override
+  final LaunchFilter? filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'PastLaunchesState.refreshing(launchesData: $launchesData, filteredLaunches: $filteredLaunches, failure: $failure, filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PastLaunchesRefreshing &&
+            const DeepCollectionEquality()
+                .equals(other.launchesData, launchesData) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredLaunches, _filteredLaunches) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.filter, filter));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(launchesData),
+      const DeepCollectionEquality().hash(_filteredLaunches),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(filter));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$PastLaunchesRefreshingCopyWith<_$PastLaunchesRefreshing> get copyWith =>
+      __$$PastLaunchesRefreshingCopyWithImpl<_$PastLaunchesRefreshing>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        initial,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        loading,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        success,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        failure,
+    required TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)
+        refreshing,
+  }) {
+    return refreshing(launchesData, filteredLaunches, this.failure, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        initial,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        loading,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        success,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
+  }) {
+    return refreshing?.call(
+        launchesData, filteredLaunches, this.failure, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        initial,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        loading,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        success,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        failure,
+    TResult Function(
+            Paginated<Launch>? launchesData,
+            List<Launch>? filteredLaunches,
+            Failure? failure,
+            LaunchFilter? filter)?
+        refreshing,
+    required TResult orElse(),
+  }) {
+    if (refreshing != null) {
+      return refreshing(launchesData, filteredLaunches, this.failure, filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PastLaunchesInitial value) initial,
+    required TResult Function(PastLaunchesLoading value) loading,
+    required TResult Function(PastLaunchesSuccess value) success,
+    required TResult Function(PastLaunchesFailure value) failure,
+    required TResult Function(PastLaunchesRefreshing value) refreshing,
+  }) {
+    return refreshing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PastLaunchesInitial value)? initial,
+    TResult Function(PastLaunchesLoading value)? loading,
+    TResult Function(PastLaunchesSuccess value)? success,
+    TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
+  }) {
+    return refreshing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PastLaunchesInitial value)? initial,
+    TResult Function(PastLaunchesLoading value)? loading,
+    TResult Function(PastLaunchesSuccess value)? success,
+    TResult Function(PastLaunchesFailure value)? failure,
+    TResult Function(PastLaunchesRefreshing value)? refreshing,
+    required TResult orElse(),
+  }) {
+    if (refreshing != null) {
+      return refreshing(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PastLaunchesRefreshingToJson(this);
+  }
+}
+
+abstract class PastLaunchesRefreshing extends PastLaunchesState {
+  factory PastLaunchesRefreshing(
+      {final Paginated<Launch>? launchesData,
+      final List<Launch>? filteredLaunches,
+      final Failure? failure,
+      final LaunchFilter? filter}) = _$PastLaunchesRefreshing;
+  PastLaunchesRefreshing._() : super._();
+
+  factory PastLaunchesRefreshing.fromJson(Map<String, dynamic> json) =
+      _$PastLaunchesRefreshing.fromJson;
+
+  @override
+  Paginated<Launch>? get launchesData => throw _privateConstructorUsedError;
+  @override
+  List<Launch>? get filteredLaunches => throw _privateConstructorUsedError;
+  @override
+  Failure? get failure => throw _privateConstructorUsedError;
+  @override
+  LaunchFilter? get filter => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$PastLaunchesRefreshingCopyWith<_$PastLaunchesRefreshing> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1495,6 +2023,8 @@ abstract class _$$PastLaunchesFilterChangedCopyWith<$Res> {
           $Res Function(_$PastLaunchesFilterChanged) then) =
       __$$PastLaunchesFilterChangedCopyWithImpl<$Res>;
   $Res call({LaunchFilter filter});
+
+  $LaunchFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -1519,6 +2049,13 @@ class __$$PastLaunchesFilterChangedCopyWithImpl<$Res>
           : filter // ignore: cast_nullable_to_non_nullable
               as LaunchFilter,
     ));
+  }
+
+  @override
+  $LaunchFilterCopyWith<$Res> get filter {
+    return $LaunchFilterCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value));
+    });
   }
 }
 
