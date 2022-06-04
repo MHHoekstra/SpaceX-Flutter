@@ -11,6 +11,7 @@ _$_Crew _$$_CrewFromJson(Map<String, dynamic> json) => _$_Crew(
       agency: json['agency'] as String?,
       image: json['image'] as String?,
       status: json['status'] as String?,
+      role: json['role'] as String?,
     );
 
 Map<String, dynamic> _$$_CrewToJson(_$_Crew instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_CrewToJson(_$_Crew instance) => <String, dynamic>{
       'agency': instance.agency,
       'image': instance.image,
       'status': instance.status,
+      'role': instance.role,
     };

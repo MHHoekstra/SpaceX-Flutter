@@ -24,6 +24,7 @@ mixin _$Crew {
   String? get agency => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,12 @@ mixin _$Crew {
 abstract class $CrewCopyWith<$Res> {
   factory $CrewCopyWith(Crew value, $Res Function(Crew) then) =
       _$CrewCopyWithImpl<$Res>;
-  $Res call({String? name, String? agency, String? image, String? status});
+  $Res call(
+      {String? name,
+      String? agency,
+      String? image,
+      String? status,
+      String? role});
 }
 
 /// @nodoc
@@ -51,6 +57,7 @@ class _$CrewCopyWithImpl<$Res> implements $CrewCopyWith<$Res> {
     Object? agency = freezed,
     Object? image = freezed,
     Object? status = freezed,
+    Object? role = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -69,6 +76,10 @@ class _$CrewCopyWithImpl<$Res> implements $CrewCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -78,7 +89,12 @@ abstract class _$$_CrewCopyWith<$Res> implements $CrewCopyWith<$Res> {
   factory _$$_CrewCopyWith(_$_Crew value, $Res Function(_$_Crew) then) =
       __$$_CrewCopyWithImpl<$Res>;
   @override
-  $Res call({String? name, String? agency, String? image, String? status});
+  $Res call(
+      {String? name,
+      String? agency,
+      String? image,
+      String? status,
+      String? role});
 }
 
 /// @nodoc
@@ -96,6 +112,7 @@ class __$$_CrewCopyWithImpl<$Res> extends _$CrewCopyWithImpl<$Res>
     Object? agency = freezed,
     Object? image = freezed,
     Object? status = freezed,
+    Object? role = freezed,
   }) {
     return _then(_$_Crew(
       name: name == freezed
@@ -114,6 +131,10 @@ class __$$_CrewCopyWithImpl<$Res> extends _$CrewCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -125,7 +146,8 @@ class _$_Crew implements _Crew {
       {required this.name,
       required this.agency,
       required this.image,
-      required this.status});
+      required this.status,
+      required this.role});
 
   factory _$_Crew.fromJson(Map<String, dynamic> json) => _$$_CrewFromJson(json);
 
@@ -137,10 +159,12 @@ class _$_Crew implements _Crew {
   final String? image;
   @override
   final String? status;
+  @override
+  final String? role;
 
   @override
   String toString() {
-    return 'Crew(name: $name, agency: $agency, image: $image, status: $status)';
+    return 'Crew(name: $name, agency: $agency, image: $image, status: $status, role: $role)';
   }
 
   @override
@@ -151,7 +175,8 @@ class _$_Crew implements _Crew {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.agency, agency) &&
             const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.role, role));
   }
 
   @JsonKey(ignore: true)
@@ -161,7 +186,8 @@ class _$_Crew implements _Crew {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(agency),
       const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(role));
 
   @JsonKey(ignore: true)
   @override
@@ -179,7 +205,8 @@ abstract class _Crew implements Crew {
       {required final String? name,
       required final String? agency,
       required final String? image,
-      required final String? status}) = _$_Crew;
+      required final String? status,
+      required final String? role}) = _$_Crew;
 
   factory _Crew.fromJson(Map<String, dynamic> json) = _$_Crew.fromJson;
 
@@ -191,6 +218,8 @@ abstract class _Crew implements Crew {
   String? get image => throw _privateConstructorUsedError;
   @override
   String? get status => throw _privateConstructorUsedError;
+  @override
+  String? get role => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_CrewCopyWith<_$_Crew> get copyWith => throw _privateConstructorUsedError;

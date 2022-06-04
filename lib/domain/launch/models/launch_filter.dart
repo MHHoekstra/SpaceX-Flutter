@@ -1,12 +1,20 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'launch_filter.freezed.dart';
+part 'launch_filter.g.dart';
+
 enum LaunchFilterOrderBy {
   flightNumberAsc,
   flightNumberDesc,
 }
 
-class LaunchFilter {
-  final String contains;
+@freezed
+class LaunchFilter with _$LaunchFilter {
+  factory LaunchFilter({
+    required String contains,
+    required LaunchFilterOrderBy orderBy,
+  }) = _LaunchFilter;
 
-  final LaunchFilterOrderBy orderBy;
-
-  LaunchFilter({required this.contains, required this.orderBy});
+  factory LaunchFilter.fromJson(Map<String, dynamic> json) =>
+      _$LaunchFilterFromJson(json);
 }
