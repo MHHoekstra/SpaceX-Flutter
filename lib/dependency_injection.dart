@@ -6,6 +6,8 @@ import 'package:space_x_flutter/domain/launch/usecases/get_latest_launch.dart';
 import 'package:space_x_flutter/domain/launch/usecases/get_past_launches.dart';
 import 'package:space_x_flutter/domain/launch/usecases/get_upcoming_launches.dart';
 import 'package:space_x_flutter/presentation/launch/screens/latest_launch_details/latest_launch_details_bloc.dart';
+import 'package:space_x_flutter/presentation/launch/screens/past_launches/past_launches_bloc.dart';
+import 'package:space_x_flutter/presentation/launch/screens/upcoming_launches/upcoming_launches_bloc.dart';
 
 void dependencyInjectionInit() {
   final getIt = GetIt.I;
@@ -25,7 +27,13 @@ void dependencyInjectionInit() {
   );
 
   //BLoCs
-  getIt.registerFactory<LatestLaunchDetailBloc>(
-    () => LatestLaunchDetailBloc(getIt()),
+  getIt.registerFactory<LatestLaunchDetailsBloc>(
+    () => LatestLaunchDetailsBloc(getIt()),
+  );
+  getIt.registerFactory<PastLaunchesBloc>(
+    () => PastLaunchesBloc(getIt()),
+  );
+  getIt.registerFactory<UpcomingLaunchesBloc>(
+    () => UpcomingLaunchesBloc(getIt()),
   );
 }

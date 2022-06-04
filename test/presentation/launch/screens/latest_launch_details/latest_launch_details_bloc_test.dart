@@ -24,21 +24,21 @@ void main() {
         launch = Launch.fromJson(validLaunchFixture);
         failure = const Failure.networkFailure();
       });
-      blocTest<LatestLaunchDetailBloc, LatestLaunchDetailsState>(
+      blocTest<LatestLaunchDetailsBloc, LatestLaunchDetailsState>(
         'emits Initial when nothing is added',
         setUp: () {
           when(() => usecase()).thenAnswer((_) async => right(launch));
         },
-        build: () => LatestLaunchDetailBloc(usecase),
+        build: () => LatestLaunchDetailsBloc(usecase),
         expect: () => [],
       );
-      blocTest<LatestLaunchDetailBloc, LatestLaunchDetailsState>(
+      blocTest<LatestLaunchDetailsBloc, LatestLaunchDetailsState>(
         'emits [Loading, Success] when LoadLatest is added and usecase is a success',
         setUp: () {
           when(() => usecase.call()).thenAnswer((_) async => right(launch));
         },
         act: (bloc) => bloc.add(LatestLaunchDetailsEvent.loadLatest()),
-        build: () => LatestLaunchDetailBloc(usecase),
+        build: () => LatestLaunchDetailsBloc(usecase),
         expect: () => [
           LatestLaunchDetailsState.loading(),
           LatestLaunchDetailsState.success(launch: launch),
@@ -47,13 +47,13 @@ void main() {
           verify(() => usecase()).called(1);
         },
       );
-      blocTest<LatestLaunchDetailBloc, LatestLaunchDetailsState>(
+      blocTest<LatestLaunchDetailsBloc, LatestLaunchDetailsState>(
         'emits [Loading, Errored] when LoadLatest is added and usecase is a success',
         setUp: () {
           when(() => usecase.call()).thenAnswer((_) async => left(failure));
         },
         act: (bloc) => bloc.add(LatestLaunchDetailsEvent.loadLatest()),
-        build: () => LatestLaunchDetailBloc(usecase),
+        build: () => LatestLaunchDetailsBloc(usecase),
         expect: () => [
           LatestLaunchDetailsState.loading(),
           LatestLaunchDetailsState.failure(failure: failure),

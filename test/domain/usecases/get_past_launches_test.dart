@@ -18,17 +18,17 @@ void main() {
   group('GetLatestLaunch', () {
     test('should call the repository', () async {
       //Arrange
-      when(() => repository.getPastLaunches(5, 1)).thenAnswer(
+      when(() => repository.getPastLaunches(5, 1, false)).thenAnswer(
         (_) async => left(
           const Failure.networkFailure(),
         ),
       );
 
       //Act
-      final result = await usecase(5, 1);
+      final result = await usecase(5, 1, false);
 
       //Assert
-      verify(() => repository.getPastLaunches(5, 1)).called(1);
+      verify(() => repository.getPastLaunches(5, 1, false)).called(1);
 
       expect(result.isLeft(), true);
       result.fold(

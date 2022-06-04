@@ -1,6 +1,4 @@
 enum LaunchFilterOrderBy {
-  dateAsc,
-  dateDesc,
   flightNumberAsc,
   flightNumberDesc,
 }

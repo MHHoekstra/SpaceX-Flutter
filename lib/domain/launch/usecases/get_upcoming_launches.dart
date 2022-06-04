@@ -13,9 +13,11 @@ class GetUpcomingLaunches {
   Future<Either<Failure, Paginated<Launch>>> call(
     int limit,
     int page,
+    bool ascending,
   ) async =>
       _repository.getUpcomingLaunches(
         limit,
         page,
+        ascending,
       );
 }

@@ -46,6 +46,7 @@ class LaunchHttpRepository implements LaunchRepository {
   Future<Either<Failure, Paginated<Launch>>> getPastLaunches(
     int limit,
     int page,
+    bool ascending,
   ) async {
     try {
       final body = {
@@ -53,7 +54,7 @@ class LaunchHttpRepository implements LaunchRepository {
         "options": {
           "limit": limit,
           "page": page,
-          "sort": {"flight_number": "desc"},
+          "sort": {"flight_number": ascending ? "asc" : "desc"},
           "populate": ["payloads", "capsules", "crew", "launchpad"]
         }
       };
@@ -77,6 +78,7 @@ class LaunchHttpRepository implements LaunchRepository {
   Future<Either<Failure, Paginated<Launch>>> getUpcomingLaunches(
     int limit,
     int page,
+    bool ascending,
   ) async {
     try {
       final body = {
@@ -84,7 +86,7 @@ class LaunchHttpRepository implements LaunchRepository {
         "options": {
           "limit": limit,
           "page": page,
-          "sort": {"flight_number": "asc"},
+          "sort": {"flight_number": ascending ? "asc" : "desc"},
           "populate": ["payloads", "capsules", "crew", "launchpad"]
         }
       };
@@ -110,7 +112,7 @@ class LaunchHttpRepository implements LaunchRepository {
   ) async {
     if (statusCode >= 200 && statusCode < 400) {
       final json = await compute(jsonDecode, response.body);
-      print(json);
+
       final paginated = Paginated.fromJson(
           json, (json) => Launch.fromJson(json as Map<String, dynamic>));
 

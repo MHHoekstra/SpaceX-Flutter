@@ -7,9 +7,9 @@ import '../../../../domain/launch/usecases/get_latest_launch.dart';
 
 part 'latest_launch_details_bloc.freezed.dart';
 
-class LatestLaunchDetailBloc
+class LatestLaunchDetailsBloc
     extends Bloc<LatestLaunchDetailsEvent, LatestLaunchDetailsState> {
-  LatestLaunchDetailBloc(this._getLatestUseCase)
+  LatestLaunchDetailsBloc(this._getLatestUseCase)
       : super(LatestLaunchDetailsState.initial()) {
     on<LatestLaunchDetailsEvent>(
       (event, emit) => event.when(

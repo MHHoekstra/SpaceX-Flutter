@@ -6,13 +6,14 @@ import '../../../../domain/core/models/failure.dart';
 import '../../../../domain/core/models/paginated.dart';
 import '../../../../domain/launch/models/launch.dart';
 import '../../../../domain/launch/models/launch_filter.dart';
-import '../../../../domain/launch/usecases/get_past_launches.dart';
+import '../../../../domain/launch/usecases/get_upcoming_launches.dart';
 
-part 'past_launches_bloc.freezed.dart';
+part 'upcoming_launches_bloc.freezed.dart';
 
-class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
-  PastLaunchesBloc(this._usecase) : super(PastLaunchesState.initial()) {
-    on<PastLaunchesEvent>(
+class UpcomingLaunchesBloc
+    extends Bloc<UpcomingLaunchesEvent, UpcomingLaunchesState> {
+  UpcomingLaunchesBloc(this._usecase) : super(UpcomingLaunchesState.initial()) {
+    on<UpcomingLaunchesEvent>(
       (event, emit) => event.when(
         getMoreLaunches: () => _handleMoreLaunches(emit),
         filterChanged: (filter) => _handleFilterChanged(filter, emit),
@@ -21,11 +22,11 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
     );
   }
 
-  final GetPastLaunches _usecase;
+  final GetUpcomingLaunches _usecase;
 
   void _handleRefresh(Emitter emit) async {
     emit(
-      PastLaunchesState.loading(
+      UpcomingLaunchesState.loading(
         filter: state.filter,
         launchesData: state.launchesData,
         filteredLaunches: state.filteredLaunches,
@@ -40,7 +41,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
 
     result.fold(
       (l) => emit(
-        PastLaunchesState.failure(
+        UpcomingLaunchesState.failure(
           failure: l,
           filteredLaunches: state.filteredLaunches,
           launchesData: state.launchesData,
@@ -48,7 +49,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
         ),
       ),
       (r) => emit(
-        PastLaunchesState.success(
+        UpcomingLaunchesState.success(
           failure: null,
           launchesData: r,
           filteredLaunches: _applyFilter(r.docs, state.filter),
@@ -61,7 +62,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
   void _handleMoreLaunches(Emitter emit) async {
     if (state.launchesData == null) {
       emit(
-        PastLaunchesState.loading(
+        UpcomingLaunchesState.loading(
           filter: state.filter,
           launchesData: state.launchesData,
           filteredLaunches: state.filteredLaunches,
@@ -76,14 +77,14 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
       );
 
       result.fold(
-        (l) => emit(PastLaunchesState.failure(
+        (l) => emit(UpcomingLaunchesState.failure(
           failure: l,
           filter: state.filter,
           launchesData: state.launchesData,
           filteredLaunches: state.filteredLaunches,
         )),
         (r) => emit(
-          PastLaunchesState.success(
+          UpcomingLaunchesState.success(
             filter: state.filter,
             failure: null,
             launchesData: r,
@@ -94,7 +95,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
     } else {
       if (state.launchesData?.hasNextPage == true) {
         emit(
-          PastLaunchesState.loading(
+          UpcomingLaunchesState.loading(
             filter: state.filter,
             launchesData: state.launchesData,
             filteredLaunches: state.filteredLaunches,
@@ -110,7 +111,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
         );
 
         result.fold(
-          (l) => emit(PastLaunchesState.failure(
+          (l) => emit(UpcomingLaunchesState.failure(
             failure: l,
             filter: state.filter,
             launchesData: state.launchesData,
@@ -120,7 +121,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
             final launchesData =
                 r.copyWith(docs: (state.launchesData?.docs ?? []) + r.docs);
             emit(
-              PastLaunchesState.success(
+              UpcomingLaunchesState.success(
                   failure: null,
                   launchesData: launchesData,
                   filteredLaunches:
@@ -130,7 +131,7 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
           },
         );
       } else {
-        emit(PastLaunchesState.success(
+        emit(UpcomingLaunchesState.success(
           filter: state.filter,
           launchesData: state.launchesData,
           filteredLaunches: state.filteredLaunches,
@@ -174,44 +175,45 @@ class PastLaunchesBloc extends Bloc<PastLaunchesEvent, PastLaunchesState> {
 }
 
 @freezed
-class PastLaunchesState with _$PastLaunchesState {
-  const PastLaunchesState._();
+class UpcomingLaunchesState with _$UpcomingLaunchesState {
+  const UpcomingLaunchesState._();
 
-  factory PastLaunchesState.initial({
+  factory UpcomingLaunchesState.initial({
     Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
-  }) = PastLaunchesInitial;
+  }) = UpcomingLaunchesInitial;
 
-  factory PastLaunchesState.loading({
+  factory UpcomingLaunchesState.loading({
     Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
-  }) = PastLaunchesLoading;
+  }) = UpcomingLaunchesLoading;
 
-  factory PastLaunchesState.success({
+  factory UpcomingLaunchesState.success({
     Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
-  }) = PastLaunchesSuccess;
+  }) = UpcomingLaunchesSuccess;
 
-  factory PastLaunchesState.failure({
+  factory UpcomingLaunchesState.failure({
     Paginated<Launch>? launchesData,
     List<Launch>? filteredLaunches,
     Failure? failure,
     LaunchFilter? filter,
-  }) = PastLaunchesFailure;
+  }) = UpcomingLaunchesFailure;
 }
 
 @freezed
-class PastLaunchesEvent with _$PastLaunchesEvent {
-  factory PastLaunchesEvent.getMoreLaunches() = PastLaunchesGetMoreLaunches;
+class UpcomingLaunchesEvent with _$UpcomingLaunchesEvent {
+  factory UpcomingLaunchesEvent.getMoreLaunches() =
+      UpcomingLaunchesGetMoreLaunches;
 
-  factory PastLaunchesEvent.filterChanged({required LaunchFilter filter}) =
-      PastLaunchesFilterChanged;
+  factory UpcomingLaunchesEvent.filterChanged({required LaunchFilter filter}) =
+      UpcomingLaunchesFilterChanged;
 
-  factory PastLaunchesEvent.refresh() = PastLaunchesRefresh;
+  factory UpcomingLaunchesEvent.refresh() = UpcomingLaunchesRefresh;
 }

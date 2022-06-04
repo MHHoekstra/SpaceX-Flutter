@@ -1312,18 +1312,21 @@ mixin _$PastLaunchesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getMoreLaunches,
     required TResult Function(LaunchFilter filter) filterChanged,
+    required TResult Function() refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getMoreLaunches,
     TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getMoreLaunches,
     TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1332,18 +1335,21 @@ mixin _$PastLaunchesEvent {
     required TResult Function(PastLaunchesGetMoreLaunches value)
         getMoreLaunches,
     required TResult Function(PastLaunchesFilterChanged value) filterChanged,
+    required TResult Function(PastLaunchesRefresh value) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
     TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
     TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1413,6 +1419,7 @@ class _$PastLaunchesGetMoreLaunches implements PastLaunchesGetMoreLaunches {
   TResult when<TResult extends Object?>({
     required TResult Function() getMoreLaunches,
     required TResult Function(LaunchFilter filter) filterChanged,
+    required TResult Function() refresh,
   }) {
     return getMoreLaunches();
   }
@@ -1422,6 +1429,7 @@ class _$PastLaunchesGetMoreLaunches implements PastLaunchesGetMoreLaunches {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getMoreLaunches,
     TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
   }) {
     return getMoreLaunches?.call();
   }
@@ -1431,6 +1439,7 @@ class _$PastLaunchesGetMoreLaunches implements PastLaunchesGetMoreLaunches {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getMoreLaunches,
     TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
     required TResult orElse(),
   }) {
     if (getMoreLaunches != null) {
@@ -1445,6 +1454,7 @@ class _$PastLaunchesGetMoreLaunches implements PastLaunchesGetMoreLaunches {
     required TResult Function(PastLaunchesGetMoreLaunches value)
         getMoreLaunches,
     required TResult Function(PastLaunchesFilterChanged value) filterChanged,
+    required TResult Function(PastLaunchesRefresh value) refresh,
   }) {
     return getMoreLaunches(this);
   }
@@ -1454,6 +1464,7 @@ class _$PastLaunchesGetMoreLaunches implements PastLaunchesGetMoreLaunches {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
     TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
   }) {
     return getMoreLaunches?.call(this);
   }
@@ -1463,6 +1474,7 @@ class _$PastLaunchesGetMoreLaunches implements PastLaunchesGetMoreLaunches {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
     TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
     required TResult orElse(),
   }) {
     if (getMoreLaunches != null) {
@@ -1546,6 +1558,7 @@ class _$PastLaunchesFilterChanged implements PastLaunchesFilterChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() getMoreLaunches,
     required TResult Function(LaunchFilter filter) filterChanged,
+    required TResult Function() refresh,
   }) {
     return filterChanged(filter);
   }
@@ -1555,6 +1568,7 @@ class _$PastLaunchesFilterChanged implements PastLaunchesFilterChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getMoreLaunches,
     TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
   }) {
     return filterChanged?.call(filter);
   }
@@ -1564,6 +1578,7 @@ class _$PastLaunchesFilterChanged implements PastLaunchesFilterChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getMoreLaunches,
     TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
     required TResult orElse(),
   }) {
     if (filterChanged != null) {
@@ -1578,6 +1593,7 @@ class _$PastLaunchesFilterChanged implements PastLaunchesFilterChanged {
     required TResult Function(PastLaunchesGetMoreLaunches value)
         getMoreLaunches,
     required TResult Function(PastLaunchesFilterChanged value) filterChanged,
+    required TResult Function(PastLaunchesRefresh value) refresh,
   }) {
     return filterChanged(this);
   }
@@ -1587,6 +1603,7 @@ class _$PastLaunchesFilterChanged implements PastLaunchesFilterChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
     TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
   }) {
     return filterChanged?.call(this);
   }
@@ -1596,6 +1613,7 @@ class _$PastLaunchesFilterChanged implements PastLaunchesFilterChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
     TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
     required TResult orElse(),
   }) {
     if (filterChanged != null) {
@@ -1613,4 +1631,116 @@ abstract class PastLaunchesFilterChanged implements PastLaunchesEvent {
   @JsonKey(ignore: true)
   _$$PastLaunchesFilterChangedCopyWith<_$PastLaunchesFilterChanged>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PastLaunchesRefreshCopyWith<$Res> {
+  factory _$$PastLaunchesRefreshCopyWith(_$PastLaunchesRefresh value,
+          $Res Function(_$PastLaunchesRefresh) then) =
+      __$$PastLaunchesRefreshCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PastLaunchesRefreshCopyWithImpl<$Res>
+    extends _$PastLaunchesEventCopyWithImpl<$Res>
+    implements _$$PastLaunchesRefreshCopyWith<$Res> {
+  __$$PastLaunchesRefreshCopyWithImpl(
+      _$PastLaunchesRefresh _value, $Res Function(_$PastLaunchesRefresh) _then)
+      : super(_value, (v) => _then(v as _$PastLaunchesRefresh));
+
+  @override
+  _$PastLaunchesRefresh get _value => super._value as _$PastLaunchesRefresh;
+}
+
+/// @nodoc
+
+class _$PastLaunchesRefresh implements PastLaunchesRefresh {
+  _$PastLaunchesRefresh();
+
+  @override
+  String toString() {
+    return 'PastLaunchesEvent.refresh()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PastLaunchesRefresh);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getMoreLaunches,
+    required TResult Function(LaunchFilter filter) filterChanged,
+    required TResult Function() refresh,
+  }) {
+    return refresh();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getMoreLaunches,
+    TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
+  }) {
+    return refresh?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getMoreLaunches,
+    TResult Function(LaunchFilter filter)? filterChanged,
+    TResult Function()? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PastLaunchesGetMoreLaunches value)
+        getMoreLaunches,
+    required TResult Function(PastLaunchesFilterChanged value) filterChanged,
+    required TResult Function(PastLaunchesRefresh value) refresh,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
+    TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PastLaunchesGetMoreLaunches value)? getMoreLaunches,
+    TResult Function(PastLaunchesFilterChanged value)? filterChanged,
+    TResult Function(PastLaunchesRefresh value)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PastLaunchesRefresh implements PastLaunchesEvent {
+  factory PastLaunchesRefresh() = _$PastLaunchesRefresh;
 }
