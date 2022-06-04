@@ -28,6 +28,7 @@ class CrewCard extends StatelessWidget {
               child: ClipOval(
                   child: Image.network(
                 crew.image != null ? crew.image! : '',
+                errorBuilder: (_, __, ___) => const Icon(Icons.person),
                 height: 90,
               )),
             ),
@@ -39,6 +40,7 @@ class CrewCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     KeyValueText(title: "Name", value: crew.name ?? "Unknown"),
+                    KeyValueText(title: "Role", value: crew.role ?? "Unknown"),
                     KeyValueText(
                         title: "Agency", value: crew.agency ?? "Unknown"),
                     KeyValueText(
