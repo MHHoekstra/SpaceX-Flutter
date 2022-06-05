@@ -9,6 +9,7 @@ import 'domain/launch/repositories/launch_repository.dart';
 import 'domain/launch/usecases/get_latest_launch.dart';
 import 'domain/launch/usecases/get_past_launches.dart';
 import 'domain/launch/usecases/get_upcoming_launches.dart';
+import 'presentation/company_info/screens/company_details/company_details_bloc.dart';
 import 'presentation/launch/screens/latest_launch_details/latest_launch_details_bloc.dart';
 import 'presentation/launch/screens/past_launches/past_launches_bloc.dart';
 import 'presentation/launch/screens/upcoming_launches/upcoming_launches_bloc.dart';
@@ -43,5 +44,8 @@ void dependencyInjectionInit() {
   );
   getIt.registerLazySingleton<UpcomingLaunchesBloc>(
     () => UpcomingLaunchesBloc(getIt())..add(UpcomingLaunchesEvent.refresh()),
+  );
+  getIt.registerLazySingleton<CompanyDetailsBloc>(
+    () => CompanyDetailsBloc(getIt())..add(CompanyDetailsEvent.loadLatest()),
   );
 }
