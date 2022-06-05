@@ -1,4 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -7,7 +6,6 @@ import '../../../../domain/company_info/usecases/get_company_info.dart';
 import '../../../../domain/core/models/failure.dart';
 
 part 'company_details_bloc.freezed.dart';
-
 part 'company_details_bloc.g.dart';
 
 class CompanyDetailsBloc
@@ -15,10 +13,9 @@ class CompanyDetailsBloc
   CompanyDetailsBloc(this._getCompanyInfoUseCase)
       : super(CompanyDetailsState.initial()) {
     on<CompanyDetailsEvent>(
-          (event, emit) =>
-          event.when(
-            loadLatest: () => _handleLoadLatest(emit),
-          ),
+      (event, emit) => event.when(
+        loadLatest: () => _handleLoadLatest(emit),
+      ),
     );
   }
 
@@ -34,11 +31,10 @@ class CompanyDetailsBloc
     final result = await _getCompanyInfoUseCase();
 
     result.fold(
-          (l) =>
-          emit(
-            CompanyDetailsFailure(failure: l, companyInfo: state.companyInfo),
-          ),
-          (r) => emit(CompanyDetailsSuccess(failure: null, companyInfo: r)),
+      (l) => emit(
+        CompanyDetailsFailure(failure: l, companyInfo: state.companyInfo),
+      ),
+      (r) => emit(CompanyDetailsSuccess(failure: null, companyInfo: r)),
     );
   }
 
@@ -77,7 +73,6 @@ class CompanyDetailsState with _$CompanyDetailsState {
 
   factory CompanyDetailsState.fromJson(Map<String, dynamic> json) =>
       _$CompanyDetailsStateFromJson(json);
-
 }
 
 @freezed
