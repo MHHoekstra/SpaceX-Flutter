@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../domain/launch/models/launch_filter.dart';
+import '../../../company_info/screens/company_details/company_details_screen.dart';
+import '../../../core/components/molecules/failure_indicator.dart';
 import "../../components/molecules/app_bottom_navigation_bar.dart";
-import '../../components/molecules/failure_indicator.dart';
 import '../../components/molecules/search_text_field.dart';
 import '../../components/organisms/launches_list_view.dart';
 import 'upcoming_launches_bloc.dart';
@@ -16,9 +17,13 @@ class UpcomingLaunchesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Upcoming Launches"),
-      ),
+      appBar: AppBar(title: Text("Upcoming Launches"), actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(CompanyDetailsScreen.screenName);
+            },
+            icon: Icon(Icons.info_outline)),
+      ]),
       bottomNavigationBar: const AppBottomNavigationBar(currentIndex: 0),
       body: SafeArea(
         child: BlocBuilder<UpcomingLaunchesBloc, UpcomingLaunchesState>(

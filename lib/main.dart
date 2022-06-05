@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:space_x_flutter/presentation/company_info/screens/company_details/company_details_screen.dart';
 
 import 'dependency_injection.dart';
 import 'presentation/launch/screens/latest_launch_details/latest_launch_details_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         PastLaunchesScreen.screenName: (_) => const PastLaunchesScreen(),
         UpcomingLaunchesScreen.screenName: (_) =>
             const UpcomingLaunchesScreen(),
+        CompanyDetailsScreen.screenName: (_) => const CompanyDetailsScreen(),
       },
     );
   }

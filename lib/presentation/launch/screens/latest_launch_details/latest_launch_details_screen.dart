@@ -4,8 +4,9 @@ import 'package:get_it/get_it.dart';
 import 'package:space_x_flutter/domain/core/models/failure.dart';
 
 import '../../../../domain/launch/models/launch.dart';
+import '../../../company_info/screens/company_details/company_details_screen.dart';
+import '../../../core/components/molecules/failure_indicator.dart';
 import '../../components/molecules/app_bottom_navigation_bar.dart';
-import '../../components/molecules/failure_indicator.dart';
 import '../../components/templates/launch_details_template.dart';
 import 'latest_launch_details_bloc.dart';
 
@@ -16,7 +17,13 @@ class LatestLaunchDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Latest')),
+      appBar: AppBar(title: Text("Latest"), actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(CompanyDetailsScreen.screenName);
+            },
+            icon: Icon(Icons.info_outline)),
+      ]),
       bottomNavigationBar: const AppBottomNavigationBar(currentIndex: 1),
       body: SafeArea(
         child: BlocBuilder<LatestLaunchDetailsBloc, LatestLaunchDetailsState>(

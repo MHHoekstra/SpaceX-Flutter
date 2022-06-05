@@ -95,7 +95,8 @@ void main() {
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
             (r) => throw wrongSideOfFold);
       });
-      test('should return a Left<ServerSideFailure> on a status 400', () async {
+      test('should return a Left<ClientSideException> on a status 400',
+          () async {
         //Arrange
         when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 400));
@@ -176,7 +177,8 @@ void main() {
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
             (r) => throw wrongSideOfFold);
       });
-      test('should return a Left<ServerSideFailure> on a status 400', () async {
+      test('should return a Left<ClientSideException> on a status 400',
+          () async {
         //Arrange
         when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 400));
@@ -258,7 +260,7 @@ void main() {
         result.fold((l) => expect(l, const Failure.serverSideFailure()),
             (r) => throw wrongSideOfFold);
       });
-      test('should return a Left<ServerSideFailure> on a status 400', () async {
+      test('should return a Left<ClientSideFailure> on a status 400', () async {
         //Arrange
         when(() => client.post(uri, body: body, headers: headers))
             .thenAnswer((_) async => http.Response(encodedJson, 400));
