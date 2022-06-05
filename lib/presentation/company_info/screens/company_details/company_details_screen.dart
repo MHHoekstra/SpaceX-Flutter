@@ -127,7 +127,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                   items: [companyInfo?.ctoPropulsion ?? ''],
                 ),
                 DetailsSection(
-                  title: "Employess",
+                  title: "Employees",
                   items: [companyInfo?.employees.toString() ?? ''],
                 ),
                 DetailsSection(
