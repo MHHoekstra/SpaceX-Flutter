@@ -1,14 +1,15 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../../domain/core/models/failure.dart';
 import '../../../../domain/launch/models/launch.dart';
 import '../../../../domain/launch/usecases/get_latest_launch.dart';
 
 part 'latest_launch_details_bloc.freezed.dart';
+part 'latest_launch_details_bloc.g.dart';
 
 class LatestLaunchDetailsBloc
-    extends Bloc<LatestLaunchDetailsEvent, LatestLaunchDetailsState> {
+    extends HydratedBloc<LatestLaunchDetailsEvent, LatestLaunchDetailsState> {
   LatestLaunchDetailsBloc(this._getLatestUseCase)
       : super(LatestLaunchDetailsState.initial()) {
     on<LatestLaunchDetailsEvent>(
@@ -36,6 +37,14 @@ class LatestLaunchDetailsBloc
       (r) => emit(LatestLaunchDetailsSuccess(failure: null, launch: r)),
     );
   }
+
+  @override
+  LatestLaunchDetailsState? fromJson(Map<String, dynamic> json) =>
+      LatestLaunchDetailsState.fromJson(json['state']);
+
+  @override
+  Map<String, dynamic>? toJson(LatestLaunchDetailsState state) =>
+      {'state': state.toJson()};
 }
 
 @freezed
@@ -61,6 +70,9 @@ class LatestLaunchDetailsState with _$LatestLaunchDetailsState {
     Launch? launch,
     Failure? failure,
   }) = LatestLaunchDetailsFailure;
+
+  factory LatestLaunchDetailsState.fromJson(Map<String, dynamic> json) =>
+      _$LatestLaunchDetailsStateFromJson(json);
 }
 
 @freezed

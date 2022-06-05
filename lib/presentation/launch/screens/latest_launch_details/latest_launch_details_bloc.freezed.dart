@@ -14,6 +14,27 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+LatestLaunchDetailsState _$LatestLaunchDetailsStateFromJson(
+    Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'initial':
+      return LatestLaunchDetailsInitial.fromJson(json);
+    case 'loading':
+      return LatestLaunchDetailsLoading.fromJson(json);
+    case 'success':
+      return LatestLaunchDetailsSuccess.fromJson(json);
+    case 'failure':
+      return LatestLaunchDetailsFailure.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'LatestLaunchDetailsState',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$LatestLaunchDetailsState {
   Launch? get launch => throw _privateConstructorUsedError;
@@ -68,7 +89,7 @@ mixin _$LatestLaunchDetailsState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LatestLaunchDetailsStateCopyWith<LatestLaunchDetailsState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -182,14 +203,22 @@ class __$$LatestLaunchDetailsInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$LatestLaunchDetailsInitial extends LatestLaunchDetailsInitial {
-  _$LatestLaunchDetailsInitial({this.launch, this.failure}) : super._();
+  _$LatestLaunchDetailsInitial({this.launch, this.failure, final String? $type})
+      : $type = $type ?? 'initial',
+        super._();
+
+  factory _$LatestLaunchDetailsInitial.fromJson(Map<String, dynamic> json) =>
+      _$$LatestLaunchDetailsInitialFromJson(json);
 
   @override
   final Launch? launch;
   @override
   final Failure? failure;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -205,6 +234,7 @@ class _$LatestLaunchDetailsInitial extends LatestLaunchDetailsInitial {
             const DeepCollectionEquality().equals(other.failure, failure));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -290,6 +320,11 @@ class _$LatestLaunchDetailsInitial extends LatestLaunchDetailsInitial {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LatestLaunchDetailsInitialToJson(this);
+  }
 }
 
 abstract class LatestLaunchDetailsInitial extends LatestLaunchDetailsState {
@@ -297,6 +332,9 @@ abstract class LatestLaunchDetailsInitial extends LatestLaunchDetailsState {
       {final Launch? launch,
       final Failure? failure}) = _$LatestLaunchDetailsInitial;
   LatestLaunchDetailsInitial._() : super._();
+
+  factory LatestLaunchDetailsInitial.fromJson(Map<String, dynamic> json) =
+      _$LatestLaunchDetailsInitial.fromJson;
 
   @override
   Launch? get launch => throw _privateConstructorUsedError;
@@ -356,14 +394,22 @@ class __$$LatestLaunchDetailsLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$LatestLaunchDetailsLoading extends LatestLaunchDetailsLoading {
-  _$LatestLaunchDetailsLoading({this.launch, this.failure}) : super._();
+  _$LatestLaunchDetailsLoading({this.launch, this.failure, final String? $type})
+      : $type = $type ?? 'loading',
+        super._();
+
+  factory _$LatestLaunchDetailsLoading.fromJson(Map<String, dynamic> json) =>
+      _$$LatestLaunchDetailsLoadingFromJson(json);
 
   @override
   final Launch? launch;
   @override
   final Failure? failure;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -379,6 +425,7 @@ class _$LatestLaunchDetailsLoading extends LatestLaunchDetailsLoading {
             const DeepCollectionEquality().equals(other.failure, failure));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -464,6 +511,11 @@ class _$LatestLaunchDetailsLoading extends LatestLaunchDetailsLoading {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LatestLaunchDetailsLoadingToJson(this);
+  }
 }
 
 abstract class LatestLaunchDetailsLoading extends LatestLaunchDetailsState {
@@ -471,6 +523,9 @@ abstract class LatestLaunchDetailsLoading extends LatestLaunchDetailsState {
       {final Launch? launch,
       final Failure? failure}) = _$LatestLaunchDetailsLoading;
   LatestLaunchDetailsLoading._() : super._();
+
+  factory LatestLaunchDetailsLoading.fromJson(Map<String, dynamic> json) =
+      _$LatestLaunchDetailsLoading.fromJson;
 
   @override
   Launch? get launch => throw _privateConstructorUsedError;
@@ -530,14 +585,22 @@ class __$$LatestLaunchDetailsSuccessCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$LatestLaunchDetailsSuccess extends LatestLaunchDetailsSuccess {
-  _$LatestLaunchDetailsSuccess({this.launch, this.failure}) : super._();
+  _$LatestLaunchDetailsSuccess({this.launch, this.failure, final String? $type})
+      : $type = $type ?? 'success',
+        super._();
+
+  factory _$LatestLaunchDetailsSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$LatestLaunchDetailsSuccessFromJson(json);
 
   @override
   final Launch? launch;
   @override
   final Failure? failure;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -553,6 +616,7 @@ class _$LatestLaunchDetailsSuccess extends LatestLaunchDetailsSuccess {
             const DeepCollectionEquality().equals(other.failure, failure));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -638,6 +702,11 @@ class _$LatestLaunchDetailsSuccess extends LatestLaunchDetailsSuccess {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LatestLaunchDetailsSuccessToJson(this);
+  }
 }
 
 abstract class LatestLaunchDetailsSuccess extends LatestLaunchDetailsState {
@@ -645,6 +714,9 @@ abstract class LatestLaunchDetailsSuccess extends LatestLaunchDetailsState {
       {final Launch? launch,
       final Failure? failure}) = _$LatestLaunchDetailsSuccess;
   LatestLaunchDetailsSuccess._() : super._();
+
+  factory LatestLaunchDetailsSuccess.fromJson(Map<String, dynamic> json) =
+      _$LatestLaunchDetailsSuccess.fromJson;
 
   @override
   Launch? get launch => throw _privateConstructorUsedError;
@@ -704,14 +776,22 @@ class __$$LatestLaunchDetailsFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$LatestLaunchDetailsFailure extends LatestLaunchDetailsFailure {
-  _$LatestLaunchDetailsFailure({this.launch, this.failure}) : super._();
+  _$LatestLaunchDetailsFailure({this.launch, this.failure, final String? $type})
+      : $type = $type ?? 'failure',
+        super._();
+
+  factory _$LatestLaunchDetailsFailure.fromJson(Map<String, dynamic> json) =>
+      _$$LatestLaunchDetailsFailureFromJson(json);
 
   @override
   final Launch? launch;
   @override
   final Failure? failure;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -727,6 +807,7 @@ class _$LatestLaunchDetailsFailure extends LatestLaunchDetailsFailure {
             const DeepCollectionEquality().equals(other.failure, failure));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -812,6 +893,11 @@ class _$LatestLaunchDetailsFailure extends LatestLaunchDetailsFailure {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LatestLaunchDetailsFailureToJson(this);
+  }
 }
 
 abstract class LatestLaunchDetailsFailure extends LatestLaunchDetailsState {
@@ -819,6 +905,9 @@ abstract class LatestLaunchDetailsFailure extends LatestLaunchDetailsState {
       {final Launch? launch,
       final Failure? failure}) = _$LatestLaunchDetailsFailure;
   LatestLaunchDetailsFailure._() : super._();
+
+  factory LatestLaunchDetailsFailure.fromJson(Map<String, dynamic> json) =
+      _$LatestLaunchDetailsFailure.fromJson;
 
   @override
   Launch? get launch => throw _privateConstructorUsedError;
