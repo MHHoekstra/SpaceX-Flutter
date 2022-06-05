@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
-import 'package:space_x_flutter/domain/company_info/usecases/get_company_info.dart';
 
 import 'data/company_info/repositories/company_info_http_repository.dart';
 import 'data/launch/repositories/launch_http_repository.dart';
 import 'domain/company_info/repositories/company_info_repository.dart';
+import 'domain/company_info/usecases/get_company_info.dart';
 import 'domain/launch/repositories/launch_repository.dart';
 import 'domain/launch/usecases/get_latest_launch.dart';
 import 'domain/launch/usecases/get_past_launches.dart';
